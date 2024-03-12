@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Estructuras\ListaDoble\ListaDoble.cpp" />
     <ClCompile Include="Estructuras\ListaSimple\ListaSimple.cpp" />
     <ClCompile Include="Estructuras\Nodos\NodoBase.cpp" />
     <ClCompile Include="Estructuras\Nodos\NodosDerivados\Administrador\NodoAdmin.cpp" />
@@ -169,9 +170,9 @@
   <ItemGroup>
     <Folder Include="Estructuras\ListaCircular\" />
     <Folder Include="Estructuras\ListaDobleCircular\" />
-    <Folder Include="Estructuras\ListaDoble\" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Estructuras\ListaDoble\ListaDoble.h" />
     <ClInclude Include="Estructuras\ListaSimple\ListaSimple.h" />
     <ClInclude Include="Estructuras\Nodos\NodoBase.h" />
     <ClInclude Include="Estructuras\Nodos\NodosDerivados\Administrador\NodoAdmin.h" />
