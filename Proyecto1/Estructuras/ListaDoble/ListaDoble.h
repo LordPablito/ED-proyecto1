@@ -17,6 +17,11 @@ public:
     void Mostrar();
     int largoLista();
 
+    NodoBase* GetPrimero() const
+    {
+        return primero;
+    }
+
 private:
     NodoBase* primero;
 };

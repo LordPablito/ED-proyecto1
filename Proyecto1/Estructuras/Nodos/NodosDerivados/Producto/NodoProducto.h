@@ -12,5 +12,12 @@ public:
 
     NodoProducto(const std::string& Linea);
 
+    NodoProducto(int pasillo, int producto, const std::string& nombre)
+        : Pasillo(pasillo),
+          Producto(producto),
+          Nombre(nombre)
+    {
+    }
+
     void Mostrar() override;
 };

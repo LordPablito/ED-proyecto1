@@ -10,5 +10,12 @@ public:
     int Codigo;
 
     NodoPasillo(std::string& Linea);
+
+    NodoPasillo(const std::string& nombre, int codigo)
+        : Nombre(nombre),
+          Codigo(codigo)
+    {
+    }
+
     void Mostrar() override;
 };

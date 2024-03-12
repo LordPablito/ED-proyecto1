@@ -19,6 +19,11 @@ public:
 	void borrarPosicion(int pos);
 	int largoLista();
 
+	NodoBase* GetPrimero() const
+	{
+		return Primero;
+	}
+
 private:
 	NodoBase* Primero;
 };
