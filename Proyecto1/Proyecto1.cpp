@@ -5,9 +5,13 @@
 //#include "Menu.cpp"
 #include "Estructuras/ListaDoble/ListaDoble.h"
 #include "Estructuras/ListaSimple/ListaSimple.h"
+#include "Estructuras/ListaDoble/ListaDobleCircular.h"
+#include "Estructuras/ListaSimple/ListaCircular.h"
 #include "Estructuras/Nodos/NodosDerivados/Inventario/NodoInventario.h"
 #include "Estructuras/Nodos/NodosDerivados/Pasillo/NodoPasillo.h"
 #include "Estructuras/Nodos/NodosDerivados/Producto/NodoProducto.h"
+#include "Estructuras/Nodos/NodosDerivados/Marca/NodoMarca.h"
+#include "Estructuras/Nodos/NodosDerivados/Ciudad/NodoCiudad.h"
 
 static const string DIRECTORIO = "../Archivos/";
 
@@ -59,18 +63,53 @@ ListaDoble* CargarInventario(string NombreArchivo)
     }
     return ListaArchivo;
 }
-
+ListaDobleCircular* CargarMarcaProductos(string NombreArchivo){
+    ifstream Archivo;
+    ListaDobleCircular* ListaArchivo = new ListaDobleCircular();
+    const string Directorio = DIRECTORIO+NombreArchivo;
+    cout<<Directorio<<endl;
+    Archivo.open(Directorio);
+    string Basura;
+    getline(Archivo, Basura);
+    for(string Linea; getline(Archivo, Linea);)
+    {
+        if (Linea.empty()) continue;
+        ListaArchivo->InsertarFinal(new NodoMarca(Linea));
+    }
+    return ListaArchivo;
+}
+ListaCircular* CargarCiudad(string NombreArchivo){
+    ifstream Archivo;
+    ListaDobleCircular* ListaArchivo = new ListaDobleCircular();
+    const string Directorio = DIRECTORIO+NombreArchivo;
+    cout<<Directorio<<endl;
+    Archivo.open(Directorio);
+    string Basura;
+    getline(Archivo, Basura);
+    for(string Linea; getline(Archivo, Linea);)
+    {
+        if (Linea.empty()) continue;
+        ListaArchivo->InsertarFinal(new NodoCiudad(Linea));
+    }
+    return ListaArchivo;
+}
 int main()
 {
     ListaSimple* ListaPasillos = CargarPasillos("Pasillos.txt");
     ListaDoble* ListaProds = CargarProductosPasillo("ProductosPasillos.txt");
     ListaDoble* ListaInventario = CargarInventario("Inventario.txt");
-    
+    ListaDobleCircular* ListaMarcas = CargarMarcaProductos("MarcasProductos.txt");
+    ListaCircular* ListaCiudades = CargarCiudad("Ciudades.txt");
     ListaPasillos->Mostrar();
     cout<<endl;
     ListaProds->Mostrar();
     cout<<endl;
     ListaInventario->Mostrar();
+    cout<< endl;
+    ListaMarcas->Mostrar();
+    cout<<endl;
+    ListaCiudades->Mostrar();
+    cout<<endl;
     std::cout<<std::endl;
 
     int opcion, subopcion1;
