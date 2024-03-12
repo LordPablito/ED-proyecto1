@@ -27,5 +27,4 @@ NodoPasillo::NodoPasillo(std::string& Linea)
 void NodoPasillo::Mostrar()
 {
     std::cout << Codigo << Nombre << std::endl;
-    NodoBase::Mostrar();
 }

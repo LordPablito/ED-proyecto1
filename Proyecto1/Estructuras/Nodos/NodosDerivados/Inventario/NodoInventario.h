@@ -12,7 +12,9 @@ public:
     int Inventario;
     std::string Nombre;
     int Cantidad;
-    int Canasta;
+    bool CanastaBasica;
 
     NodoInventario(const std::string& Linea);
+
+    void Mostrar() override;
 };

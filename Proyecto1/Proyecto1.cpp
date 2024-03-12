@@ -4,6 +4,7 @@
 #include "Menu.cpp"
 #include "Estructuras/ListaDoble/ListaDoble.h"
 #include "Estructuras/ListaSimple/ListaSimple.h"
+#include "Estructuras/Nodos/NodosDerivados/Inventario/NodoInventario.h"
 #include "Estructuras/Nodos/NodosDerivados/Pasillo/NodoPasillo.h"
 #include "Estructuras/Nodos/NodosDerivados/Producto/NodoProducto.h"
 
@@ -52,7 +53,8 @@ ListaDoble* CargarInventario(string NombreArchivo)
     getline(Archivo, Basura);
     for(string Linea; getline(Archivo, Linea);)
     {
-        ListaArchivo->InsertarFinal(new NodoProducto(Linea));
+        if (Linea.empty()) continue;
+        ListaArchivo->InsertarFinal(new NodoInventario(Linea));
     }
     return ListaArchivo;
 }
@@ -62,11 +64,13 @@ int main()
     //Menu();
     ListaSimple* ListaPasillos = CargarPasillos("Pasillos.txt");
     ListaDoble* ListaProds = CargarProductosPasillo("ProductosPasillos.txt");
-    
+    ListaDoble* ListaInventario = CargarInventario("Inventario.txt");
     
     ListaPasillos->Mostrar();
     cout<<endl;
     ListaProds->Mostrar();
+    cout<<endl;
+    ListaInventario->Mostrar();
     std::cout<<std::endl;
     return 0;
 }
