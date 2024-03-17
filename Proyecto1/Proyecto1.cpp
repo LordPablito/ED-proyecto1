@@ -5,8 +5,8 @@
 //#include "Menu.cpp"
 #include "Estructuras/ListaDoble/ListaDoble.h"
 #include "Estructuras/ListaSimple/ListaSimple.h"
-#include "Estructuras/ListaDoble/ListaDobleCircular.h"
-#include "Estructuras/ListaSimple/ListaCircular.h"
+#include "Estructuras/ListaDobleCircular/ListaDobleCircular.h"
+#include "Estructuras/ListaCircular/ListaCircular.h"
 #include "Estructuras/Nodos/NodosDerivados/Inventario/NodoInventario.h"
 #include "Estructuras/Nodos/NodosDerivados/Pasillo/NodoPasillo.h"
 #include "Estructuras/Nodos/NodosDerivados/Producto/NodoProducto.h"
@@ -80,7 +80,7 @@ ListaDobleCircular* CargarMarcaProductos(string NombreArchivo){
 }
 ListaCircular* CargarCiudad(string NombreArchivo){
     ifstream Archivo;
-    ListaDobleCircular* ListaArchivo = new ListaDobleCircular();
+    ListaCircular* ListaArchivo = new ListaCircular();
     const string Directorio = DIRECTORIO+NombreArchivo;
     cout<<Directorio<<endl;
     Archivo.open(Directorio);

@@ -1,5 +1,5 @@
 #include "ListaCircular.h"
-
+#include <iostream>
 ListaCircular::ListaCircular() : primero(nullptr) {}
 
 ListaCircular::~ListaCircular()
