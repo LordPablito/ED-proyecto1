@@ -2,16 +2,16 @@
 #include <iostream>
 #include <string>
 
-//#include "Menu.cpp"
 #include "Estructuras/ListaDoble/ListaDoble.h"
 #include "Estructuras/ListaSimple/ListaSimple.h"
-#include "Estructuras/ListaDoble/ListaDobleCircular.h"
-#include "Estructuras/ListaSimple/ListaCircular.h"
+#include "Estructuras/ListaDobleCircular/ListaDobleCircular.h"
+#include "Estructuras/ListaCircular/ListaCircular.h"
 #include "Estructuras/Nodos/NodosDerivados/Inventario/NodoInventario.h"
 #include "Estructuras/Nodos/NodosDerivados/Pasillo/NodoPasillo.h"
 #include "Estructuras/Nodos/NodosDerivados/Producto/NodoProducto.h"
 #include "Estructuras/Nodos/NodosDerivados/Marca/NodoMarca.h"
 #include "Estructuras/Nodos/NodosDerivados/Ciudad/NodoCiudad.h"
+#include "Menu/MenuFunciones.h"
 
 static const string DIRECTORIO = "../Archivos/";
 
@@ -80,7 +80,7 @@ ListaDobleCircular* CargarMarcaProductos(string NombreArchivo){
 }
 ListaCircular* CargarCiudad(string NombreArchivo){
     ifstream Archivo;
-    ListaDobleCircular* ListaArchivo = new ListaDobleCircular();
+    ListaCircular* ListaArchivo = new ListaCircular();
     const string Directorio = DIRECTORIO+NombreArchivo;
     cout<<Directorio<<endl;
     Archivo.open(Directorio);
@@ -145,6 +145,8 @@ int main()
                     switch (subopcion1) {
                         case 1:
                             {
+                                MenuFunciones::InsertarPasillo(ListaPasillos);
+                                /*
                                 cout << "Insertando en la Opción 1." << endl;
                                 // Código correspondiente a insertar en la opción 1
                                 int CodPasillo;
@@ -171,34 +173,13 @@ int main()
                                 }
                                 ListaPasillos->InsertarFinal(new NodoPasillo(NombrePasillo, CodPasillo));
                                 break;
+                                */
                             }
                         case 2:
                             {
-                                int CodPasillo;
-                                cout << "Eliminando en la Opción 1." << endl;
-                                // Código correspondiente a eliminar en la opción 1
-
-                                cout<<"Ingrese el código de pasillo: ";
-                                cin >> CodPasillo;
-
-                                NodoBase* AuxPasilloElim = ListaPasillos->GetPrimero();
-                                int IndicePasilloElim = 1;
-                                while (AuxPasilloElim)
-                                {
-                                    if (NodoPasillo* Pasillo = dynamic_cast<NodoPasillo*>(AuxPasilloElim))
-                                    {
-                                        if (Pasillo->Codigo == CodPasillo)
-                                        {
-                                            ListaPasillos->borrarPosicion(IndicePasilloElim);
-                                            break;
-                                        }
-                                    }
-                                    IndicePasilloElim++;
-                                    AuxPasilloElim = AuxPasilloElim->Siguiente;
-                                }
+                                MenuFunciones::EliminarPasillo(ListaPasillos);
                                 break;
                             }
-                            
                         case 0:
                             cout << "Volviendo al menu principal..." << endl;
                             break;
@@ -218,88 +199,16 @@ int main()
     
                     cout << "Ingrese el numero de subopcion: ";
                     cin >> subopcion1;
-                    
-                switch (subopcion1) {
+
+                    switch (subopcion1)
+                    {
                     case 1:
-                        {
-                            cout << "Insertando en la Opción 1." << endl;
-                        // Código correspondiente a insertar en la opción 1
-                        int CodPasillo;
-                        int CodProd;
-                        string NombreProd;
-
-                        cout << "Ingrese el código de pasillo: ";
-                        cin >> CodPasillo;
-
-                        cout << "Ingrese el código de producto: ";
-                        cin >> CodProd;
-
-                        cout << "Ingrese el nombre de producto: ";
-                        cin >> NombreProd;
-
-                        NodoBase* AuxProdPasilloIns = ListaPasillos->GetPrimero();
-
-                        bool PasilloExiste = false;
-                        while (AuxProdPasilloIns)
-                        {
-                            if (NodoPasillo* Pasillo= dynamic_cast<NodoPasillo*>(AuxProdPasilloIns))
-                            {
-                                if (Pasillo->Codigo == CodPasillo)
-                                {
-                                    PasilloExiste = true;
-                                }
-                            }
-                            AuxProdPasilloIns = AuxProdPasilloIns->Siguiente;
-                        }
-                        if (!PasilloExiste) break;
-                    
-                        NodoBase* AuxProdIns = ListaProds->GetPrimero();
-                        bool ProdEsUnico = true;
-                        while (AuxProdIns)
-                        {
-                            if (NodoProducto* Producto= dynamic_cast<NodoProducto*>(AuxProdIns))
-                            {
-                                if (Producto->Producto == CodProd)
-                                {
-                                    ProdEsUnico = false;    
-                                }
-                                
-                            }
-                            AuxProdIns = AuxProdIns->Siguiente;
-                        }
-                        if (!ProdEsUnico) break;
-
-                        ListaProds->InsertarFinal(new NodoProducto(CodPasillo, CodProd, NombreProd));
+                        cout << "Insertando en la Opción 1." << endl;
+                        MenuFunciones::InsertarProducto(ListaProds, ListaPasillos);
                         break;
-                        }
-                        
                     case 2:
-                        {
-                            int CodProd;
-                            cout << "Eliminando en la Opción 1." << endl;
-                            // Código correspondiente a eliminar en la opción 1
-
-                            cout << "Ingrese el código de producto: ";
-                            cin >> CodProd;
-
-                            NodoBase* AuxProdElim = ListaProds->GetPrimero();
-                            int IndiceProdElim = 1;
-                            while (AuxProdElim)
-                            {
-                                if (NodoProducto* Prod = dynamic_cast<NodoProducto*>(AuxProdElim))
-                                {
-                                    if (Prod->Producto == CodProd)
-                                    {
-                                        break;
-                                    }
-                                }
-                                IndiceProdElim++;
-                                AuxProdElim = AuxProdElim->Siguiente;
-                            }
-                            ListaProds->BorrarPosicion(IndiceProdElim);
-                            break;
-                        }
-                        
+                        MenuFunciones::EliminarProducto(ListaProds, ListaMarcas);
+                        break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
                         break;

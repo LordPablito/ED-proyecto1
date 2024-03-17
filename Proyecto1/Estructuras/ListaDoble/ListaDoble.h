@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include <functional>
+
 #include "../Nodos/NodoBase.h"
 
 class ListaDoble
@@ -14,6 +16,7 @@ public:
     void BorrarFinal();
     void BorrarInicio();
     void BorrarPosicion(int pos);
+    NodoBase* EncontrarPorPredicado(std::function<bool(NodoBase*)> func);
     void Mostrar();
     int largoLista();
 

@@ -154,6 +154,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Estructuras\ListaCircular\ListaCircular.cpp" />
+    <ClCompile Include="Estructuras\ListaDobleCircular\ListaDobleCircular.cpp" />
     <ClCompile Include="Estructuras\ListaDoble\ListaDoble.cpp" />
     <ClCompile Include="Estructuras\ListaSimple\ListaSimple.cpp" />
     <ClCompile Include="Estructuras\Nodos\NodoBase.cpp" />
@@ -164,15 +166,15 @@
     <ClCompile Include="Estructuras\Nodos\NodosDerivados\Marca\NodoMarca.cpp" />
     <ClCompile Include="Estructuras\Nodos\NodosDerivados\Pasillo\NodoPasillo.cpp" />
     <ClCompile Include="Estructuras\Nodos\NodosDerivados\Producto\NodoProducto.cpp" />
+    <ClCompile Include="Estructuras\TablaHash\TablaHash.cpp" />
     <ClCompile Include="LectorArchivos\LectorArchivos.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Menu\MenuFunciones.cpp" />
     <ClCompile Include="Proyecto1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Estructuras\ListaCircular\" />
-    <Folder Include="Estructuras\ListaDobleCircular\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="Estructuras\ListaCircular\ListaCircular.h" />
+    <ClInclude Include="Estructuras\ListaDobleCircular\ListaDobleCircular.h" />
     <ClInclude Include="Estructuras\ListaDoble\ListaDoble.h" />
     <ClInclude Include="Estructuras\ListaSimple\ListaSimple.h" />
     <ClInclude Include="Estructuras\Nodos\NodoBase.h" />
@@ -183,7 +185,9 @@
     <ClInclude Include="Estructuras\Nodos\NodosDerivados\Marca\NodoMarca.h" />
     <ClInclude Include="Estructuras\Nodos\NodosDerivados\Pasillo\NodoPasillo.h" />
     <ClInclude Include="Estructuras\Nodos\NodosDerivados\Producto\NodoProducto.h" />
+    <ClInclude Include="Estructuras\TablaHash\TablaHash.h" />
     <ClInclude Include="LectorArchivos\LectorArchivos.h" />
+    <ClInclude Include="Menu\MenuFunciones.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
