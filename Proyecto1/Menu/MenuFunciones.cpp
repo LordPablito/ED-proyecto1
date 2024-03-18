@@ -381,6 +381,41 @@ void MenuFunciones::BuscarInventario(ListaDoble* ListaInventario)
 
 void MenuFunciones::ModificarInventario(ListaDoble* ListaInventario)
 {
+    int CodInv;
+    cout<<"Ingrese el codigo del inventario a buscar: "<<endl;
+    cin>>CodInv;
+
+    NodoBase* Nodo = ListaInventario->EncontrarPorPredicado([CodInv](NodoBase* Nodo)
+    {
+        if (NodoInventario* Inventario = dynamic_cast<NodoInventario*>(Nodo))
+        {
+            return Inventario->Inventario == CodInv;
+        }
+        return false;
+    });
+    if (!dynamic_cast<NodoInventario*>(Nodo))
+    {
+        cout<<"No se encontró el inventarion buscado"<<endl;
+        return;
+    }
+    NodoInventario* InventarioModificado = dynamic_cast<NodoInventario*>(Nodo);
+    InventarioModificado->Mostrar();
+    string Nombre;
+    int CantidadStock;
+    int CodigoCanasta;
+
+    cout<<"Ingrese el nuevo nombre del inventario: ";
+    cin>>Nombre;
+    cout<<"Ingrese la nueva cantidad en stock: ";
+    cin>>CantidadStock;
+    cout<<"Ingrese el codigo de canasta: ";
+    cin>>CodigoCanasta;
+
+    InventarioModificado->Nombre = Nombre;
+    InventarioModificado->Cantidad = CantidadStock;
+    InventarioModificado->CanastaBasica = CodigoCanasta;
+    InventarioModificado->Mostrar();
+    cout<<"Inventario actualizado exitosamente"<<endl;
 }
 #pragma endregion 
 
