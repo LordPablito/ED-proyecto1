@@ -18,4 +18,6 @@ public:
     NodoBase* BuscarNodo(int Llave, function<bool(NodoBase*)> func);
 
     void EliminarNodo(int Llave, function<bool(NodoBase*)> func);
+
+    void Mostrar();
 };

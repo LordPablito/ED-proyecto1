@@ -17,6 +17,7 @@ public:
     void BorrarInicio();
     void BorrarPosicion(int pos);
     NodoBase* EncontrarPorPredicado(std::function<bool(NodoBase*)> func);
+    int ConseguirPosicion(NodoBase* Nodo);
     void Mostrar();
     int largoLista();
 

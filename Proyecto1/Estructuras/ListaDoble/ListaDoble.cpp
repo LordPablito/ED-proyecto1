@@ -207,6 +207,23 @@ NodoBase* ListaDoble::EncontrarPorPredicado(std::function<bool(NodoBase*)> func)
     return nullptr;
 }
 
+int ListaDoble::ConseguirPosicion(NodoBase* Nodo)
+{
+    NodoBase* Aux = primero;
+
+    int i = 1;
+    while (Aux)
+    {
+        if (Aux == Nodo)
+        {
+            return i;
+        }
+        i++;
+        Aux = Aux->Siguiente;
+    }
+    return -1;
+}
+
 
 void ListaDoble::Mostrar()
 {

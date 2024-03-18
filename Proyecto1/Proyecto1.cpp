@@ -6,11 +6,13 @@
 #include "Estructuras/ListaSimple/ListaSimple.h"
 #include "Estructuras/ListaDobleCircular/ListaDobleCircular.h"
 #include "Estructuras/ListaCircular/ListaCircular.h"
+#include "Estructuras/Nodos/NodosDerivados/Administrador/NodoAdmin.h"
 #include "Estructuras/Nodos/NodosDerivados/Inventario/NodoInventario.h"
 #include "Estructuras/Nodos/NodosDerivados/Pasillo/NodoPasillo.h"
 #include "Estructuras/Nodos/NodosDerivados/Producto/NodoProducto.h"
 #include "Estructuras/Nodos/NodosDerivados/Marca/NodoMarca.h"
 #include "Estructuras/Nodos/NodosDerivados/Ciudad/NodoCiudad.h"
+#include "Estructuras/TablaHash/TablaHash.h"
 #include "Menu/MenuFunciones.h"
 
 static const string DIRECTORIO = "../Archivos/";
@@ -93,6 +95,23 @@ ListaCircular* CargarCiudad(string NombreArchivo){
     }
     return ListaArchivo;
 }
+
+TablaHash* CargarAdmins(string NombreArchivo)
+{
+    ifstream Archivo;
+    TablaHash* ListaArchivo = new TablaHash();
+    const string Directorio = DIRECTORIO+NombreArchivo;
+    cout<<Directorio<<endl;
+    Archivo.open(Directorio);
+    for(string Linea; getline(Archivo, Linea);)
+    {
+        if (Linea.empty()) continue;
+        NodoAdmin* NuevoNodo = new NodoAdmin(Linea);
+        ListaArchivo->InsertarNodo(NuevoNodo, NuevoNodo->CodAministrador);
+    }
+    return ListaArchivo;
+}
+
 int main()
 {
     ListaSimple* ListaPasillos = CargarPasillos("Pasillos.txt");
@@ -100,6 +119,7 @@ int main()
     ListaDoble* ListaInventario = CargarInventario("Inventario.txt");
     ListaDobleCircular* ListaMarcas = CargarMarcaProductos("MarcasProductos.txt");
     ListaCircular* ListaCiudades = CargarCiudad("Ciudades.txt");
+    TablaHash* TablaAdmins = CargarAdmins("Administradores.txt");
     ListaPasillos->Mostrar();
     cout<<endl;
     ListaProds->Mostrar();
@@ -110,7 +130,8 @@ int main()
     cout<<endl;
     ListaCiudades->Mostrar();
     cout<<endl;
-    std::cout<<std::endl;
+    TablaAdmins->Mostrar();
+    cout<<endl;
 
     int opcion, subopcion1;
 
@@ -137,6 +158,8 @@ int main()
                     cout << "Pasillo:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
+                    cout << "3. Buscar" << endl;
+                    cout << "4. Modificar" << endl;
                     cout << "0. Atras" << endl;
 
                     cout << "Ingrese el numero de subopcion: ";
@@ -144,9 +167,8 @@ int main()
                     
                     switch (subopcion1) {
                         case 1:
-                            {
-                                MenuFunciones::InsertarPasillo(ListaPasillos);
-                                /*
+                            MenuFunciones::InsertarPasillo(ListaPasillos);
+                            /*
                                 cout << "Insertando en la Opción 1." << endl;
                                 // Código correspondiente a insertar en la opción 1
                                 int CodPasillo;
@@ -174,12 +196,16 @@ int main()
                                 ListaPasillos->InsertarFinal(new NodoPasillo(NombrePasillo, CodPasillo));
                                 break;
                                 */
-                            }
+                            break;
                         case 2:
-                            {
-                                MenuFunciones::EliminarPasillo(ListaPasillos);
-                                break;
-                            }
+                            MenuFunciones::EliminarPasillo(ListaPasillos);
+                            break;
+                        case 3:
+                            MenuFunciones::BuscarPasillo(ListaPasillos);
+                            break;
+                        case 4:
+                            MenuFunciones::ModificarPasillo(ListaPasillos);
+                            break;
                         case 0:
                             cout << "Volviendo al menu principal..." << endl;
                             break;
@@ -195,6 +221,8 @@ int main()
                     cout << "Producto:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
+                    cout << "3. Buscar" << endl;
+                    cout << "4. Modificar" << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
@@ -208,6 +236,12 @@ int main()
                         break;
                     case 2:
                         MenuFunciones::EliminarProducto(ListaProds, ListaMarcas);
+                        break;
+                    case 3:
+                        MenuFunciones::BuscarProducto(ListaProds, ListaPasillos);
+                        break;
+                    case 4:
+                        MenuFunciones::ModificarProducto(ListaProds, ListaPasillos);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -232,14 +266,14 @@ int main()
                 switch (subopcion1) {
                     case 1:
                         cout << "Insertando en la Opción 1." << endl;
-                        // Código correspondiente a insertar en la opción 1
                         break;
                     case 2:
                         cout << "Eliminando en la Opción 1." << endl;
-                        // Código correspondiente a eliminar en la opción 1
+                        MenuFunciones::EliminarInventario(ListaInventario);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
+                    
                         break;
                     default:
                         cout << "Subopcion no válida. Por favor ingresa un número del 1 al 3." << endl;
@@ -253,6 +287,8 @@ int main()
                     cout << "Inventario:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
+                    cout << "3. Buscar" << endl;
+                    cout << "3. Modificar" << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
@@ -261,11 +297,17 @@ int main()
                 switch (subopcion1) {
                     case 1:
                         cout << "Insertando en la Opción 1." << endl;
-                        // Código correspondiente a insertar en la opción 1
+                        MenuFunciones::InsertarInventario(ListaInventario, ListaPasillos, ListaProds, ListaMarcas);
                         break;
                     case 2:
                         cout << "Eliminando en la Opción 1." << endl;
-                        // Código correspondiente a eliminar en la opción 1
+                        MenuFunciones::EliminarInventario(ListaInventario);
+                        break;
+                    case 3:
+                        MenuFunciones::BuscarInventario(ListaInventario);
+                        break;
+                    case 4:
+                        MenuFunciones::ModificarInventario(ListaInventario);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -311,6 +353,8 @@ int main()
                     cout << "Administrador:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
+                    cout << "3. Buscar" << endl;
+                    cout << "4. Modificar" << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
@@ -320,10 +364,19 @@ int main()
                     case 1:
                         cout << "Insertando en la Opción 1." << endl;
                         // Código correspondiente a insertar en la opción 1
+                        MenuFunciones::InsertarAdministrador(TablaAdmins, ListaCiudades);
                         break;
                     case 2:
                         cout << "Eliminando en la Opción 1." << endl;
                         // Código correspondiente a eliminar en la opción 1
+                        MenuFunciones::EliminarAdministrador(TablaAdmins, ListaCiudades);
+                        break;
+                    case 3:
+                        // Código correspondiente a buscar en la opción 1
+                        MenuFunciones::EncontrarAdministrador(TablaAdmins, ListaCiudades);
+                        break;
+                    case 4:
+                        MenuFunciones::ModificarAdministrador(TablaAdmins, ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
