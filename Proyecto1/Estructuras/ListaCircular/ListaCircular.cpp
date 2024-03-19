@@ -1,5 +1,7 @@
 #include "ListaCircular.h"
 #include <iostream>
+
+>>>>>>> origin/Clientes
 ListaCircular::ListaCircular() : primero(nullptr) {}
 
 ListaCircular::~ListaCircular()
@@ -165,6 +167,36 @@ void ListaCircular::BorrarPosicion(int pos)
     NodoBase* temp = Aux->Siguiente;
     Aux->Siguiente = temp->Siguiente;
     delete temp;
+}
+
+NodoBase* ListaCircular::EncontrarPorPredicado(std::function<bool(NodoBase*)> func)
+{
+    NodoBase* Aux = primero;
+    do
+    {
+        if (func(Aux))
+        {
+            return Aux;
+        }
+        Aux = Aux->Siguiente;
+    } while (Aux != primero);
+    return nullptr;
+}
+
+int ListaCircular::ConseguirPosicion(NodoBase* Nodo)
+{
+    NodoBase* Aux = primero;
+    int i = 1;
+    do
+    {
+        if (Aux == Nodo)
+        {
+            return i; 
+        }
+        Aux = Aux->Siguiente;
+        i++;
+    } while (Aux != primero);
+    return -1;
 }
 
 void ListaCircular::Mostrar()

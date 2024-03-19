@@ -1,4 +1,6 @@
 #pragma once
+#include <functional>
+
 #include "../Nodos/NodoBase.h"
 
 class ListaCircular
@@ -14,6 +16,8 @@ public:
     void BorrarFinal();
     void BorrarInicio();
     void BorrarPosicion(int pos);
+    NodoBase* EncontrarPorPredicado(std::function<bool(NodoBase*)> func);
+    int ConseguirPosicion(NodoBase* Nodo);
     void Mostrar();
     int largoLista();
 

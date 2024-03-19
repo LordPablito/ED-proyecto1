@@ -192,6 +192,38 @@ void ListaDoble::BorrarPosicion(int pos)
     } //else
 }
 
+NodoBase* ListaDoble::EncontrarPorPredicado(std::function<bool(NodoBase*)> func)
+{
+    NodoBase* Aux = primero;
+
+    while (Aux)
+    {
+        if (func(Aux))
+        {
+            return Aux;
+        }
+        Aux = Aux->Siguiente;
+    }
+    return nullptr;
+}
+
+int ListaDoble::ConseguirPosicion(NodoBase* Nodo)
+{
+    NodoBase* Aux = primero;
+
+    int i = 1;
+    while (Aux)
+    {
+        if (Aux == Nodo)
+        {
+            return i;
+        }
+        i++;
+        Aux = Aux->Siguiente;
+    }
+    return -1;
+}
+
 
 void ListaDoble::Mostrar()
 {

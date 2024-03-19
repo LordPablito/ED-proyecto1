@@ -153,7 +153,7 @@ void ListaSimple::BorrarInicio()
 }
 
 
-void ListaSimple::borrarPosicion(int pos)
+void ListaSimple::BorrarPosicion(int pos)
 {
 	if (ListaVacia())
 	{
@@ -189,7 +189,39 @@ void ListaSimple::borrarPosicion(int pos)
 		}
 	}
 }
- 
+
+NodoBase* ListaSimple::EncontrarPorPredicado(function<bool(NodoBase*)> func)
+{
+	NodoBase* Aux = Primero;
+
+	while (Aux)
+	{
+		if (func(Aux))
+		{
+			return Aux;
+		}
+		Aux = Aux->Siguiente;
+	}
+	return nullptr;
+}
+
+int ListaSimple::ConseguirPosicion(NodoBase* Nodo)
+{
+	int Contador = 1;
+
+	NodoBase* Aux = Primero;
+	while (Aux)
+	{
+		if (Nodo == Aux)
+		{
+			return Contador;
+		}
+		Contador++;
+		Aux = Aux->Siguiente;
+	}
+	return -1;
+}
+
 
 void ListaSimple::Mostrar()
 {

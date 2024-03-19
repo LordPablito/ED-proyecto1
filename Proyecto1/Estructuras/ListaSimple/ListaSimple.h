@@ -1,4 +1,6 @@
-﻿#include <iostream>
+﻿#pragma once
+#include <functional>
+#include <iostream>
 
 #include "../Nodos/NodoBase.h"
 using namespace std;
@@ -16,7 +18,9 @@ public:
 	void Mostrar();
 	void BorrarFinal();
 	void BorrarInicio();
-	void borrarPosicion(int pos);
+	void BorrarPosicion(int pos);
+	NodoBase* EncontrarPorPredicado(function<bool(NodoBase*)> func);
+	int ConseguirPosicion(NodoBase* Nodo);
 	int largoLista();
 
 	NodoBase* GetPrimero() const

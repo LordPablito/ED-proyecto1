@@ -4,5 +4,5 @@
 class NodoCliente: public NodoBase
 {
 public:
-    
+    int Cedula;
 };

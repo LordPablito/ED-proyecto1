@@ -152,6 +152,20 @@ void ListaDobleCircular::BorrarPosicion(int pos)
     delete Aux;
 }
 
+NodoBase* ListaDobleCircular::EncontrarPorPredicado(std::function<bool(NodoBase*)> func)
+{
+    NodoBase* Aux = primero;
+    do
+    {
+        if (func(Aux))
+        {
+            return Aux;
+        }
+        Aux = Aux->Siguiente;
+    } while (Aux != primero);
+    return nullptr;
+}
+
 void ListaDobleCircular::Mostrar()
 {
     if (ListaVacia())

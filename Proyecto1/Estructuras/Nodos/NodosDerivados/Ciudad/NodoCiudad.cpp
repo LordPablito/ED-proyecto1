@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 
-NodoCiudad::NodoCiudad(std::string& Linea)
+NodoCiudad::NodoCiudad(const std::string& Linea)
 {
     std::string Atributo;
     std::istringstream StreamLinea(Linea);
@@ -13,7 +13,7 @@ NodoCiudad::NodoCiudad(std::string& Linea)
         switch (Indice)
         {
         case 0:
-            Codigo = std::stoi(Atributo);
+            CodCiudad = std::stoi(Atributo);
             break;
         case 1:
             Nombre = Atributo;
@@ -26,4 +26,5 @@ NodoCiudad::NodoCiudad(std::string& Linea)
 
 void NodoCiudad::Mostrar()
 {
-    std::cout << Codigo << Nombre << std::endl;
+    std::cout << CodCiudad << Nombre << std::endl;
+}
