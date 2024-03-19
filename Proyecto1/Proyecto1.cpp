@@ -111,6 +111,8 @@ TablaHash* CargarAdmins(string NombreArchivo)
 
 int main()
 {
+    
+    
     ListaSimple* ListaPasillos = CargarPasillos("Pasillos.txt");
     ListaDoble* ListaProds = CargarProductosPasillo("ProductosPasillos.txt");
     ListaDoble* ListaInventario = CargarInventario("Inventario.txt");

@@ -4,8 +4,14 @@
 #include "../Estructuras/Nodos/NodosDerivados/Inventario/NodoInventario.h"
 #include "../Estructuras/Nodos/NodosDerivados/Marca/NodoMarca.h"
 #include "../Estructuras/Nodos/NodosDerivados/Pasillo/NodoPasillo.h"
+#include "../Estructuras/Nodos/NodosDerivados/Producto/NodoProducto.h"
 #include "../Estructuras/Nodos/NodosDerivados/Ciudad/NodoCiudad.h"
-#include "../Estructuras/Nodos/NodosDerivados/Clientes/NodoCliente.h
+#include "../Estructuras/Nodos/NodosDerivados/Clientes/NodoCliente.h"
+#pragma region Login 
+bool MenuFunciones::Login()
+{
+}
+#pragma endregion
 
 #pragma region Pasillo
 void MenuFunciones::InsertarPasillo(ListaSimple* Lista)
@@ -570,7 +576,7 @@ void MenuFunciones::InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaP
     cout << "Marca de producto insertada correctamente." << endl;
 }
 void MenuFunciones::EliminarMarcaProducto(ListaDoble* Lista) {
-    Lista->EliminarTodo();
+    //Lista->EliminarTodo();
     cout << "Todas las marcas de productos han sido eliminadas." << endl;
 }
 void MenuFunciones::EncontrarMarcaProducto(ListaDoble* Lista) {
@@ -659,7 +665,7 @@ void MenuFunciones:: InsertarCiudad(ListaCircular* ListaCiudades)
     cin.ignore();
     getline(cin, nombre);
 
-    NodoBase* auxCiudad = lista->EncontrarPorPredicado([&CodCiudad](NodoBase* nodo) {
+    NodoBase* auxCiudad = ListaCiudades->EncontrarPorPredicado([&CodCiudad](NodoBase* nodo) {
         if (NodoCiudad* ciudad = dynamic_cast<NodoCiudad*>(nodo)) {
             return ciudad->CodCiudad == CodCiudad;
         }
@@ -671,30 +677,34 @@ void MenuFunciones:: InsertarCiudad(ListaCircular* ListaCiudades)
         return;
     }
 
-    lista->InsertarFinal(new NodoCiudad(codciudad, nombre));
-    lista->Mostrar();
+    ListaCiudades->InsertarFinal(new NodoCiudad(CodCiudad, nombre));
+    ListaCiudades->Mostrar();
 }
 void MenuFunciones:: EliminarCiudad(ListaCircular* ListaCiudades)
     {
-        int codciudad;
-        cout <<"-----Eliminando Ciuad-----" << endl;
-        cout << "Ingrese el codigo de la ciuada a eliminar: "
+        int CodCiudad;
+        cout << "-----Eliminando Ciuad-----" << endl;
+        cout << "Ingrese el codigo de la ciuada a eliminar: ";
         cin >> CodCiudad;
 
-        NodoBase* auxCiudad = ListaCiudades->EncontrarPorPredicado([&CodCiudad](NodoBase* nodo) {
-                if (NodoCiudad* ciudad = dynamic_cast<NodoCiudad*>(nodo)) {
-                    return ciudad->CodCiudad == CodCiudad;
-                }
-                return false;
-            });
-
-            if (auxCiudad) {
-                cout << "La ciudad ya existe en la lista." << endl;
-                return;
+        NodoBase* auxCiudad = ListaCiudades->EncontrarPorPredicado([&CodCiudad](NodoBase* nodo)
+        {
+            if (NodoCiudad* ciudad = dynamic_cast<NodoCiudad*>(nodo))
+            {
+                return ciudad->CodCiudad == CodCiudad;
             }
+            return false;
+        });
 
-            ListaCiudades->InsertarFinal(new NodoCiudad(CodCiudad, nombre));
-            lista->Mostrar();
+        if (!auxCiudad)
+        {
+            cout << "La ciudad no existe en la lista." << endl;
+            return;
+        }
+
+        ListaCiudades->BorrarPosicion(ListaCiudades->ConseguirPosicion(auxCiudad));
+        //ListaCiudades->InsertarFinal(new NodoCiudad(CodCiudad, nombre));
+        ListaCiudades->Mostrar();
      
     }
 void MenuFunciones::EncontrarCiudad(ListaCircular* ListaCiudades) {

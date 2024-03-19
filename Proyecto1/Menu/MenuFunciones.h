@@ -9,6 +9,10 @@ class MenuFunciones
 {
 public:
 
+#pragma region Login
+    static bool Login();
+#pragma endregion 
+
 #pragma region Pasillo
     static void InsertarPasillo(ListaSimple* Lista);
     static void EliminarPasillo(ListaSimple* Lista);
