@@ -4,7 +4,8 @@
 #include "../Estructuras/Nodos/NodosDerivados/Inventario/NodoInventario.h"
 #include "../Estructuras/Nodos/NodosDerivados/Marca/NodoMarca.h"
 #include "../Estructuras/Nodos/NodosDerivados/Pasillo/NodoPasillo.h"
-#include "../Estructuras/Nodos/NodosDerivados/Producto/NodoProducto.h"
+#include "../Estructuras/Nodos/NodosDerivados/Ciudad/NodoCiudad.h"
+#include "../Estructuras/Nodos/NodosDerivados/Clientes/NodoCliente.h
 
 #pragma region Pasillo
 void MenuFunciones::InsertarPasillo(ListaSimple* Lista)
@@ -515,4 +516,238 @@ void MenuFunciones::ModificarAdministrador(TablaHash* TablaAdmins, ListaCircular
     Admin->Mostrar();
     cout<<"Datos actualizados exitosamente"<<endl;
 }
+#pragma endregion 
+
+#pragma region Marca
+void MenuFunciones::InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaPasillos) {
+    int codPasillo, codProducto, codMarca, cantidadGondola;
+    double precio;
+    string nombre;
+
+    cout << "Ingrese el código de pasillo: ";
+    cin >> codPasillo;
+    // Verificar si el pasillo existe
+    NodoBase* nodoPasillo = ListaPasillos->EncontrarPorPredicado([codPasillo](NodoBase* nodo) {
+        if (NodoPasillo* pasillo = dynamic_cast<NodoPasillo*>(nodo)) {
+            return pasillo->Codigo == codPasillo;
+        }
+        return false;
+    });
+    if (!nodoPasillo) {
+        cout << "El pasillo ingresado no existe." << endl;
+        return;
+    }
+
+    cout << "Ingrese el código de producto: ";
+    cin >> codProducto;
+
+    cout << "Ingrese el código de marca: ";
+    cin >> codMarca;
+
+    // Verificar si el código de marca ya existe
+    NodoBase* nodoMarca = Lista->EncontrarPorPredicado([codMarca](NodoBase* nodo) {
+        if (NodoMarca* marca = dynamic_cast<NodoMarca*>(nodo)) {
+            return marca->CodMarca == codMarca;
+        }
+        return false;
+    });
+    if (nodoMarca) {
+        cout << "El código de marca ya está en uso." << endl;
+        return;
+    }
+
+    cout << "Ingrese el nombre de la marca: ";
+    cin.ignore();
+    getline(cin, nombre);
+
+    cout << "Ingrese la cantidad en la góndola: ";
+    cin >> cantidadGondola;
+
+    cout << "Ingrese el precio: ";
+    cin >> precio;
+
+    Lista->InsertarFinal(new NodoMarca(codPasillo, codProducto, codMarca, nombre, cantidadGondola, precio));
+    cout << "Marca de producto insertada correctamente." << endl;
+}
+void MenuFunciones::EliminarMarcaProducto(ListaDoble* Lista) {
+    Lista->EliminarTodo();
+    cout << "Todas las marcas de productos han sido eliminadas." << endl;
+}
+void MenuFunciones::EncontrarMarcaProducto(ListaDoble* Lista) {
+    int codPasillo, codProducto, codMarca;
+    cout << "Ingrese el código de pasillo: ";
+    cin >> codPasillo;
+    cout << "Ingrese el código de producto: ";
+    cin >> codProducto;
+    cout << "Ingrese el código de marca: ";
+    cin >> codMarca;
+
+    NodoBase* nodoMarca = Lista->EncontrarPorPredicado([codPasillo, codProducto, codMarca](NodoBase* nodo) {
+        if (NodoMarca* marca = dynamic_cast<NodoMarca*>(nodo)) {
+            return marca->CodPasillo == codPasillo && marca->CodProducto == codProducto && marca->CodMarca == codMarca;
+        }
+        return false;
+    });
+
+    if (nodoMarca) {
+        NodoMarca* marca = dynamic_cast<NodoMarca*>(nodoMarca);
+        cout << "Marca de producto encontrada:" << endl;
+        marca->Mostrar();
+    } else {
+        cout << "No se encontró la marca de producto." << endl;
+    }
+}
+void MenuFunciones::ModificarMarcaProducto(ListaDoble* Lista) {
+    int codPasillo, codProducto, codMarca;
+    cout << "Ingrese el código de pasillo: ";
+    cin >> codPasillo;
+    cout << "Ingrese el código de producto: ";
+    cin >> codProducto;
+    cout << "Ingrese el código de marca: ";
+    cin >> codMarca;
+
+    NodoBase* nodoMarca = Lista->EncontrarPorPredicado([codPasillo, codProducto, codMarca](NodoBase* nodo) {
+        if (NodoMarca* marca = dynamic_cast<NodoMarca*>(nodo)) {
+            return marca->CodPasillo == codPasillo && marca->CodProducto == codProducto && marca->CodMarca == codMarca;
+        }
+        return false;
+    });
+
+    if (!nodoMarca) {
+        cout << "No se encontró la marca de producto." << endl;
+        return;
+    }
+
+    NodoMarca* marca = dynamic_cast<NodoMarca*>(nodoMarca);
+    marca->Mostrar();
+
+    string nombre;
+    int cantidad;
+    double precio;
+
+    cout << "Ingrese el nuevo nombre de la marca: ";
+    cin.ignore();
+    getline(cin, nombre);
+
+    cout << "Ingrese la nueva cantidad en la góndola: ";
+    cin >> cantidad;
+
+    cout << "Ingrese el nuevo precio: ";
+    cin >> precio;
+
+    marca->Nombre = nombre;
+    marca->CantidadGondola = cantidad;
+    marca->Precio = precio;
+
+    cout << "Marca de producto modificada:" << endl;
+    marca->Mostrar();
+}
+
+#pragma endregion
+
+#pragma region Ciudades
+void MenuFunciones:: InsertarCiudad(ListaCircular* ListaCiudades)
+    {
+    cout << "-----Ingresando ciudad-----";
+    int CodCiudad;
+    string nombre ;
+    
+    cout << "Digite codigo de la ciudad: ";
+    cin >> CodCiudad;
+
+    cout << "Ingrese el nombre de la ciudad: ";
+    cin.ignore();
+    getline(cin, nombre);
+
+    NodoBase* auxCiudad = lista->EncontrarPorPredicado([&CodCiudad](NodoBase* nodo) {
+        if (NodoCiudad* ciudad = dynamic_cast<NodoCiudad*>(nodo)) {
+            return ciudad->CodCiudad == CodCiudad;
+        }
+        return false;
+    });
+
+    if (auxCiudad) {
+        cout << "La ciudad ya existe en la lista." << endl;
+        return;
+    }
+
+    lista->InsertarFinal(new NodoCiudad(codciudad, nombre));
+    lista->Mostrar();
+}
+void MenuFunciones:: EliminarCiudad(ListaCircular* ListaCiudades)
+    {
+        int codciudad;
+        cout <<"-----Eliminando Ciuad-----" << endl;
+        cout << "Ingrese el codigo de la ciuada a eliminar: "
+        cin >> CodCiudad;
+
+        NodoBase* auxCiudad = ListaCiudades->EncontrarPorPredicado([&CodCiudad](NodoBase* nodo) {
+                if (NodoCiudad* ciudad = dynamic_cast<NodoCiudad*>(nodo)) {
+                    return ciudad->CodCiudad == CodCiudad;
+                }
+                return false;
+            });
+
+            if (auxCiudad) {
+                cout << "La ciudad ya existe en la lista." << endl;
+                return;
+            }
+
+            ListaCiudades->InsertarFinal(new NodoCiudad(CodCiudad, nombre));
+            lista->Mostrar();
+     
+    }
+void MenuFunciones::EncontrarCiudad(ListaCircular* ListaCiudades) {
+    int codCiudad;
+    cout << "Ingrese el código de ciudad a buscar: ";
+    cin >> codCiudad;
+
+    NodoBase* nodoCiudad = ListaCiudades->EncontrarPorPredicado([codCiudad](NodoBase* nodo) {
+        if (NodoCiudad* ciudad = dynamic_cast<NodoCiudad*>(nodo)) {
+            return ciudad->CodCiudad == codCiudad;
+        }
+        return false;
+    });
+
+    if (nodoCiudad) {
+        NodoCiudad* ciudad = dynamic_cast<NodoCiudad*>(nodoCiudad);
+        cout << "Ciudad encontrada:" << endl;
+        ciudad->Mostrar();
+    } else {
+        cout << "No se encontró la ciudad con el código " << codCiudad << endl;
+    }
+}
+void MenuFunciones::ModificarCiudad(ListaCircular* ListaCiudades) {
+    int codCiudad;
+    cout << "Ingrese el código de ciudad a modificar: ";
+    cin >> codCiudad;
+
+    NodoBase* nodoCiudad = ListaCiudades->EncontrarPorPredicado([codCiudad](NodoBase* nodo) {
+        if (NodoCiudad* ciudad = dynamic_cast<NodoCiudad*>(nodo)) {
+            return ciudad->CodCiudad == codCiudad;
+        }
+        return false;
+    });
+
+    if (!nodoCiudad) {
+        cout << "No se encontró la ciudad con el código " << codCiudad << endl;
+        return;
+    }
+
+    NodoCiudad* ciudad = dynamic_cast<NodoCiudad*>(nodoCiudad);
+    ciudad->Mostrar();
+
+    string nombre;
+    cout << "Ingrese el nuevo nombre de la ciudad: ";
+    cin.ignore(); // Limpiar el buffer del teclado antes de leer el nombre
+    getline(cin, nombre);
+
+    ciudad->Nombre = nombre;
+    cout << "Ciudad modificada:" << endl;
+    ciudad->Mostrar();
+}
+
+#pragma endregion
+
+#pragma region Clientes
 #pragma endregion 

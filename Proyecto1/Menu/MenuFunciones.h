@@ -37,4 +37,25 @@ public:
     static void EncontrarAdministrador(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
     static void ModificarAdministrador(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
 #pragma endregion 
+
+#pragma region Marca
+    static void InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaPasillos);
+    static void EliminarMarcaProducto(ListaDoble* Lista);
+    static void EncontrarMarcaProducto(ListaDoble* Lista);
+    static void ModificarMarcaProducto(ListaDoble* Lista);
+#pragma endregion
+
+#pragma region Ciudades
+    static void InsertarCiudad(ListaCircular* ListaCiudades);
+    static void EliminarCiudad(ListaCircular* ListaCiudades);
+    static void EncontrarCiudad(ListaCircular* ListaCiudades);
+    static void ModificarCiudad(ListaCircular* ListaCiudades);
+#pragma endregion
+
+#pragma region Clientes
+    static void InsertarClientes(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
+    static void EliminarClientes(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
+    static void EncontrarClientes(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
+    static void ModificarClientes(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
+#pragma endregion 
 };

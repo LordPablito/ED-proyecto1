@@ -32,7 +32,6 @@ ListaSimple* CargarPasillos(string NombreArchivo)
     }
     return ListaArchivo;
 }
-
 ListaDoble* CargarProductosPasillo(string NombreArchivo)
 {
     ifstream Archivo;
@@ -48,7 +47,6 @@ ListaDoble* CargarProductosPasillo(string NombreArchivo)
     }
     return ListaArchivo;
 }
-
 ListaDoble* CargarInventario(string NombreArchivo)
 {
     ifstream Archivo;
@@ -95,7 +93,6 @@ ListaCircular* CargarCiudad(string NombreArchivo){
     }
     return ListaArchivo;
 }
-
 TablaHash* CargarAdmins(string NombreArchivo)
 {
     ifstream Archivo;
@@ -168,34 +165,6 @@ int main()
                     switch (subopcion1) {
                         case 1:
                             MenuFunciones::InsertarPasillo(ListaPasillos);
-                            /*
-                                cout << "Insertando en la Opción 1." << endl;
-                                // Código correspondiente a insertar en la opción 1
-                                int CodPasillo;
-                                string NombrePasillo;
-                        
-                                cout<<"Ingrese el código de pasillo: ";
-                                cin >> CodPasillo;
-
-                                cout<<"Ingrese el nombre de pasillo: ";
-                                cin >> NombrePasillo;
-
-                                //Check repeticion
-                                NodoBase* AuxPasilloIns = ListaPasillos->GetPrimero();
-                                while (AuxPasilloIns)
-                                {
-                                    if (NodoPasillo* Pasillo = dynamic_cast<NodoPasillo*>(AuxPasilloIns))
-                                    {
-                                        if (Pasillo->Codigo == CodPasillo)
-                                        {
-                                            break;
-                                        }
-                                    }
-                                    AuxPasilloIns = AuxPasilloIns->Siguiente;
-                                }
-                                ListaPasillos->InsertarFinal(new NodoPasillo(NombrePasillo, CodPasillo));
-                                break;
-                                */
                             break;
                         case 2:
                             MenuFunciones::EliminarPasillo(ListaPasillos);
@@ -217,7 +186,6 @@ int main()
                 break;
             case 2:
                 do {
-                    // Mostrar submenú para la opción 1
                     cout << "Producto:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
@@ -258,6 +226,8 @@ int main()
                     cout << "Marca:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
+                    cout << "3. Buscar" << endl;
+                    cout << "4. Modificar" << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
@@ -268,7 +238,6 @@ int main()
                         cout << "Insertando en la Opción 1." << endl;
                         break;
                     case 2:
-                        cout << "Eliminando en la Opción 1." << endl;
                         MenuFunciones::EliminarInventario(ListaInventario);
                         break;
                     case 0:
