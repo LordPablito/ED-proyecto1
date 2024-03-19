@@ -8,8 +8,68 @@
 #include "../Estructuras/Nodos/NodosDerivados/Ciudad/NodoCiudad.h"
 #include "../Estructuras/Nodos/NodosDerivados/Clientes/NodoCliente.h"
 #pragma region Login 
-bool MenuFunciones::Login()
+bool MenuFunciones::Login(TablaHash* TablaAdmins, TablaHash* TablaClientes)
 {
+    do
+    {
+        int AdminOCliente = 0;
+            cout<<"Desea ingresar como administrador o cliente?"<<endl;
+            cout<<"1. Administrador"<<endl;
+            cout<<"2. Cliente"<<endl;
+            cin>>AdminOCliente;
+        
+            switch (AdminOCliente)
+            {
+            case 1:
+                {
+                    int CodAdmin;
+                    cout<<"Ingrese su codigo de adminstrador: ";
+                    cin>>CodAdmin;
+        
+                    NodoBase* NodoLoginAdmin = TablaAdmins->BuscarNodo(CodAdmin, [CodAdmin](NodoBase* Nodo)
+                    {
+                        if (NodoAdmin* Admin = dynamic_cast<NodoAdmin*>(Nodo))
+                        {
+                            return Admin->CodAministrador == CodAdmin;
+                        }
+                        return false;
+                    });
+                    if (!NodoLoginAdmin)
+                    {
+                        cout<<"Codigo inválido"<<endl;
+                        break;
+                    }
+                    cout<<"Se ingresó correctamente, bienvenido"<<endl;
+                    return true;    
+                }
+            case 2:
+                {
+                    int Cedula;
+                    cout<<"Ingrese su cedula: ";
+                    cin>>Cedula;
+        
+                    NodoBase* NodoLoginCliente = TablaClientes->BuscarNodo(Cedula, [Cedula](NodoBase* Nodo)
+                    {
+                        if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo))
+                        {
+                            return Cliente->Cedula == Cedula;
+                        }
+                        return false;
+                    });
+                    if (!NodoLoginCliente)
+                    {
+                        cout<<"Cedula inválida"<<endl;
+                        break;
+                    }
+                    cout<<"Se ingresó correctamente, bienvenido"<<endl;
+                    return false;
+                }
+            default:
+                cout<<"Opcion invalida"<<endl;
+                break;
+            }
+    }
+    while (true);
 }
 #pragma endregion
 

@@ -10,7 +10,7 @@ class MenuFunciones
 public:
 
 #pragma region Login
-    static bool Login();
+    static bool Login(TablaHash* TablaAdmins, TablaHash* TablaClientes);
 #pragma endregion 
 
 #pragma region Pasillo

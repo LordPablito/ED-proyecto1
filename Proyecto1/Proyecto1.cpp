@@ -119,7 +119,11 @@ int main()
     ListaDobleCircular* ListaMarcas = CargarMarcaProductos("MarcasProductos.txt");
     ListaCircular* ListaCiudades = CargarCiudad("Ciudades.txt");
     TablaHash* TablaAdmins = CargarAdmins("Administradores.txt");
+    TablaHash* TablaClientes = new TablaHash();
     ListaPasillos->Mostrar();
+
+    bool EsAdmin = MenuFunciones::Login(TablaAdmins, TablaClientes);
+    
     cout<<endl;
     ListaProds->Mostrar();
     cout<<endl;
