@@ -820,4 +820,99 @@ void MenuFunciones::ModificarCiudad(ListaCircular* ListaCiudades) {
 #pragma endregion
 
 #pragma region Clientes
+void MenuFunciones::InsertarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades, int totalClientes){
+     string LineaCliente;
+    cout << "Ingrese la siguiente información separada por ';'" << endl;
+    cout << "Cedula;Nombre;Codigo de ciudad;Telefono;Correo" << endl;
+    cin >> LineaCliente;
+
+    NodoCliente* Cliente = new NodoCliente(LineaCliente);
+    // Aplicar función de hashing
+    int hash = (stoi(Cliente->Cedula) % totalClientes) + 1;
+    TablaClientes->InsertarNodo(Cliente, hash);
+    TablaClientes->Mostrar();
+}
+void MenuFunciones::EliminarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades){ string Cedula;
+    cout << "Ingrese la cedula del cliente a eliminar" << endl;
+    cin >> Cedula;
+
+    // Buscar cliente por cedula
+    int hash = (stoi(Cedula) % totalClientes) + 1;
+    TablaClientes->EliminarNodo(hash, [Cedula](NodoBase* Nodo) {
+        if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo)) {
+            return Cliente->Cedula == Cedula;
+        }
+        return false;
+    });
+    TablaClientes->Mostrar();
+}
+void MenuFunciones::EncontrarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
+    string Cedula;
+    cout << "Ingrese la cedula del cliente a buscar" << endl;
+    cin >> Cedula;
+
+    // Buscar cliente por cedula
+    int hash = (stoi(Cedula) % totalClientes) + 1;
+    NodoBase* Nodo = TablaClientes->BuscarNodo(hash, [Cedula](NodoBase* Nodo) {
+        if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo)) {
+            return Cliente->Cedula == Cedula;
+        }
+        return false;
+    });
+
+    if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo)) {
+        cout << "Se encontró el cliente: " << endl;
+        Cliente->Mostrar();
+    } else {
+        cout << "No se encontró el cliente solicitado" << endl;
+    }
+
+}
+void MenuFunciones::ModificarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
+     string Cedula;
+    cout << "Ingrese la cedula del cliente a modificar" << endl;
+    cin >> Cedula;
+
+    // Buscar cliente por cedula
+    int hash = (stoi(Cedula) % totalClientes) + 1;
+    NodoBase* Nodo = TablaClientes->BuscarNodo(hash, [Cedula](NodoBase* Nodo) {
+        if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo)) {
+            return Cliente->Cedula == Cedula;
+        }
+        return false;
+    });
+
+    if (!dynamic_cast<NodoCliente*>(Nodo)) {
+        cout << "No se encontró el cliente con la cedula " << Cedula << endl;
+        return;
+    }
+
+    NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo);
+    Cliente->Mostrar();
+    string Nombre;
+    int CodCiudad;
+    int Telefono;
+    string Correo;
+
+    cout << "Ingrese el nuevo nombre del cliente: ";
+    cin >> Nombre;
+    cout << "Ingrese el nuevo codigo de ciudad del cliente: ";
+    cin >> CodCiudad;
+    // Validar que la ciudad exista
+    // Si la ciudad no existe, mostrar un mensaje de error y volver al menú
+    if (!ListaCiudades->BuscarNodo(CodCiudad)) {
+        cout << "La ciudad ingresada no existe." << endl;
+        return;
+    }
+    cout << "Ingrese el nuevo telefono del cliente: ";
+    cin >> Telefono;
+    cout << "Ingrese el nuevo correo del cliente: ";
+    cin >> Correo;
+    Cliente->Nombre = Nombre;
+    Cliente->CodCiudad = CodCiudad;
+    Cliente->Telefono = Telefono;
+    Cliente->Correo = Correo;
+    Cliente->Mostrar();
+    cout << "Datos actualizados exitosamente" << endl;
+}
 #pragma endregion 

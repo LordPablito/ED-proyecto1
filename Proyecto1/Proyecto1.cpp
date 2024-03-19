@@ -205,7 +205,6 @@ int main()
                     switch (subopcion1)
                     {
                     case 1:
-                        cout << "Insertando en la Opción 1." << endl;
                         MenuFunciones::InsertarProducto(ListaProds, ListaPasillos);
                         break;
                     case 2:
@@ -241,10 +240,16 @@ int main()
                     
                 switch (subopcion1) {
                     case 1:
-                        cout << "Insertando en la Opción 1." << endl;
+                        MenuFunciones::InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaPasillos)
                         break;
                     case 2:
-                        MenuFunciones::EliminarInventario(ListaInventario);
+                        MenuFunciones::EliminarMarcaProducto(ListaDoble* Lista);
+                        break;
+                    case 3:
+                        MenuFunciones::EncontrarMarcaProducto(ListaDoble* Lista)
+                        break;
+                    case 4:
+                        MenuFunciones::ModificarMarcaProducto(ListaDoble* Lista);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -271,11 +276,9 @@ int main()
                     
                 switch (subopcion1) {
                     case 1:
-                        cout << "Insertando en la Opción 1." << endl;
                         MenuFunciones::InsertarInventario(ListaInventario, ListaPasillos, ListaProds, ListaMarcas);
                         break;
                     case 2:
-                        cout << "Eliminando en la Opción 1." << endl;
                         MenuFunciones::EliminarInventario(ListaInventario);
                         break;
                     case 3:
@@ -306,12 +309,16 @@ int main()
                     
                 switch (subopcion1) {
                     case 1:
-                        cout << "Insertando en la Opción 1." << endl;
-                        // Código correspondiente a insertar en la opción 1
+                        MenuFunciones::InsertarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades, int totalClientes)
                         break;
                     case 2:
-                        cout << "Eliminando en la Opción 1." << endl;
-                        // Código correspondiente a eliminar en la opción 1
+                        MenuFunciones::EliminarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
+                        break;
+                    case 3:
+                        MenuFunciones::EncontrarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
+                        break;
+                    case 4:
+                        MenuFunciones::ModificarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -337,17 +344,12 @@ int main()
                     
                 switch (subopcion1) {
                     case 1:
-                        cout << "Insertando en la Opción 1." << endl;
-                        // Código correspondiente a insertar en la opción 1
                         MenuFunciones::InsertarAdministrador(TablaAdmins, ListaCiudades);
                         break;
                     case 2:
-                        cout << "Eliminando en la Opción 1." << endl;
-                        // Código correspondiente a eliminar en la opción 1
                         MenuFunciones::EliminarAdministrador(TablaAdmins, ListaCiudades);
                         break;
                     case 3:
-                        // Código correspondiente a buscar en la opción 1
                         MenuFunciones::EncontrarAdministrador(TablaAdmins, ListaCiudades);
                         break;
                     case 4:
@@ -368,6 +370,8 @@ int main()
                     cout << "Ciudad:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
+                    cout << "3. Buscar" << endl;
+                    cout << "4. Modificar" << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
@@ -375,12 +379,16 @@ int main()
                     
                 switch (subopcion1) {
                     case 1:
-                        cout << "Insertando en la Opción 1." << endl;
-                        // Código correspondiente a insertar en la opción 1
+                        void MenuFunciones:: InsertarCiudad(ListaCircular* ListaCiudades)
                         break;
                     case 2:
-                        cout << "Eliminando en la Opción 1." << endl;
-                        // Código correspondiente a eliminar en la opción 1
+                        void MenuFunciones:: EliminarCiudad(ListaCircular* ListaCiudades)
+                        break;
+                    case 3:
+                        void MenuFunciones::EncontrarCiudad(ListaCircular* ListaCiudades);
+                        break;
+                    case 4:
+                        void MenuFunciones::ModificarCiudad(ListaCircular* ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
