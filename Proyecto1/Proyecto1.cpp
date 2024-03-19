@@ -12,6 +12,7 @@
 #include "Estructuras/Nodos/NodosDerivados/Producto/NodoProducto.h"
 #include "Estructuras/Nodos/NodosDerivados/Marca/NodoMarca.h"
 #include "Estructuras/Nodos/NodosDerivados/Ciudad/NodoCiudad.h"
+#include "Estructuras/Nodos/NodosDerivados/Clientes/NodoCliente.h"
 #include "Estructuras/TablaHash/TablaHash.h"
 #include "Menu/MenuFunciones.h"
 
@@ -240,16 +241,16 @@ int main()
                     
                 switch (subopcion1) {
                     case 1:
-                        MenuFunciones::InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaPasillos)
+                        MenuFunciones::InsertarMarcaProducto(ListaDobleCircular* ListaMarcas, ListaSimple* ListaPasillos)
                         break;
                     case 2:
-                        MenuFunciones::EliminarMarcaProducto(ListaDoble* Lista);
+                        MenuFunciones::EliminarMarcaProducto(ListaDobleCircular* ListaMarcas);
                         break;
                     case 3:
-                        MenuFunciones::EncontrarMarcaProducto(ListaDoble* Lista)
+                        MenuFunciones::EncontrarMarcaProducto(ListaDobleCircular* ListaMarcas)
                         break;
                     case 4:
-                        MenuFunciones::ModificarMarcaProducto(ListaDoble* Lista);
+                        MenuFunciones::ModificarMarcaProducto(ListaDobleCircular* ListaMarcas);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -309,16 +310,16 @@ int main()
                     
                 switch (subopcion1) {
                     case 1:
-                        MenuFunciones::InsertarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades, int totalClientes)
+                        MenuFunciones::InsertarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades, int totalClientes)
                         break;
                     case 2:
-                        MenuFunciones::EliminarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
+                        MenuFunciones::EliminarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
                         break;
                     case 3:
-                        MenuFunciones::EncontrarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
+                        MenuFunciones::EncontrarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
                         break;
                     case 4:
-                        MenuFunciones::ModificarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
+                        MenuFunciones::ModificarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;

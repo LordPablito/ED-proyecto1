@@ -43,10 +43,10 @@ public:
 #pragma endregion 
 
 #pragma region Marca
-    static void InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaPasillos);
-    static void EliminarMarcaProducto(ListaDoble* Lista);
-    static void EncontrarMarcaProducto(ListaDoble* Lista);
-    static void ModificarMarcaProducto(ListaDoble* Lista);
+    static void InsertarMarcaProducto(ListaDobleCircular* ListaMarcas, ListaSimple* ListaPasillos);
+    static void EliminarMarcaProducto(ListaDobleCircular* ListaMarcas);
+    static void EncontrarMarcaProducto(ListaDobleCircular* ListaMarcas);
+    static void ModificarMarcaProducto(ListaDobleCircular* ListaMarcas);
 #pragma endregion
 
 #pragma region Ciudades

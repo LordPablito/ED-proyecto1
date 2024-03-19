@@ -585,7 +585,7 @@ void MenuFunciones::ModificarAdministrador(TablaHash* TablaAdmins, ListaCircular
 #pragma endregion 
 
 #pragma region Marca
-void MenuFunciones::InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaPasillos) {
+void MenuFunciones::InsertarMarcaProducto(ListaDobleCircular* Lista, ListaSimple* ListaPasillos) {
     int codPasillo, codProducto, codMarca, cantidadGondola;
     double precio;
     string nombre;
@@ -635,11 +635,11 @@ void MenuFunciones::InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaP
     Lista->InsertarFinal(new NodoMarca(codPasillo, codProducto, codMarca, nombre, cantidadGondola, precio));
     cout << "Marca de producto insertada correctamente." << endl;
 }
-void MenuFunciones::EliminarMarcaProducto(ListaDoble* Lista) {
+void MenuFunciones::EliminarMarcaProducto(ListaDobleCircular* Lista) {
     //Lista->EliminarTodo();
     cout << "Todas las marcas de productos han sido eliminadas." << endl;
 }
-void MenuFunciones::EncontrarMarcaProducto(ListaDoble* Lista) {
+void MenuFunciones::EncontrarMarcaProducto(ListaDobleCircular* Lista) {
     int codPasillo, codProducto, codMarca;
     cout << "Ingrese el código de pasillo: ";
     cin >> codPasillo;
@@ -663,7 +663,7 @@ void MenuFunciones::EncontrarMarcaProducto(ListaDoble* Lista) {
         cout << "No se encontró la marca de producto." << endl;
     }
 }
-void MenuFunciones::ModificarMarcaProducto(ListaDoble* Lista) {
+void MenuFunciones::ModificarMarcaProducto(ListaDobleCircular* Lista) {
     int codPasillo, codProducto, codMarca;
     cout << "Ingrese el código de pasillo: ";
     cin >> codPasillo;
@@ -820,7 +820,7 @@ void MenuFunciones::ModificarCiudad(ListaCircular* ListaCiudades) {
 #pragma endregion
 
 #pragma region Clientes
-void MenuFunciones::InsertarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades, int totalClientes){
+void MenuFunciones::InsertarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades, int totalClientes){
      string LineaCliente;
     cout << "Ingrese la siguiente información separada por ';'" << endl;
     cout << "Cedula;Nombre;Codigo de ciudad;Telefono;Correo" << endl;
@@ -832,7 +832,7 @@ void MenuFunciones::InsertarCliente(TablaHash* TablaClientes, ListaCircular* Lis
     TablaClientes->InsertarNodo(Cliente, hash);
     TablaClientes->Mostrar();
 }
-void MenuFunciones::EliminarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades){ string Cedula;
+void MenuFunciones::EliminarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades){ string Cedula;
     cout << "Ingrese la cedula del cliente a eliminar" << endl;
     cin >> Cedula;
 
@@ -846,7 +846,7 @@ void MenuFunciones::EliminarCliente(TablaHash* TablaClientes, ListaCircular* Lis
     });
     TablaClientes->Mostrar();
 }
-void MenuFunciones::EncontrarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
+void MenuFunciones::EncontrarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
     string Cedula;
     cout << "Ingrese la cedula del cliente a buscar" << endl;
     cin >> Cedula;
@@ -868,7 +868,7 @@ void MenuFunciones::EncontrarCliente(TablaHash* TablaClientes, ListaCircular* Li
     }
 
 }
-void MenuFunciones::ModificarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
+void MenuFunciones::ModificarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
      string Cedula;
     cout << "Ingrese la cedula del cliente a modificar" << endl;
     cin >> Cedula;
