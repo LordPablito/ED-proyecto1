@@ -57,9 +57,9 @@ public:
 #pragma endregion
 
 #pragma region Clientes
-    static void InsertarClientes(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
-    static void EliminarClientes(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
-    static void EncontrarClientes(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
-    static void ModificarClientes(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
+    static void InsertarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades,int totalClientes);
+    static void EliminarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades);
+    static void EncontrarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades);
+    static void ModificarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades);
 #pragma endregion 
 };
