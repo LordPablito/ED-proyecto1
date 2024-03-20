@@ -240,16 +240,16 @@ int main()
                     
                 switch (subopcion1) {
                     case 1:
-                        MenuFunciones::InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaPasillos)
+                        MenuFunciones::InsertarMarcaProducto(ListaMarcas, ListaPasillos);
                         break;
                     case 2:
-                        MenuFunciones::EliminarMarcaProducto(ListaDoble* Lista);
+                        MenuFunciones::EliminarMarcaProducto(ListaMarcas);
                         break;
                     case 3:
-                        MenuFunciones::EncontrarMarcaProducto(ListaDoble* Lista)
+                        MenuFunciones::EncontrarMarcaProducto(ListaMarcas);
                         break;
                     case 4:
-                        MenuFunciones::ModificarMarcaProducto(ListaDoble* Lista);
+                        MenuFunciones::ModificarMarcaProducto(ListaMarcas);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -309,16 +309,16 @@ int main()
                     
                 switch (subopcion1) {
                     case 1:
-                        MenuFunciones::InsertarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades, int totalClientes)
+                        MenuFunciones::InsertarClientes(TablaClientes, ListaCiudades, 0);
                         break;
                     case 2:
-                        MenuFunciones::EliminarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
+                        MenuFunciones::EliminarClientes(TablaClientes, ListaCiudades);
                         break;
                     case 3:
-                        MenuFunciones::EncontrarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
+                        MenuFunciones::EncontrarClientes(TablaClientes, ListaCiudades);
                         break;
                     case 4:
-                        MenuFunciones::ModificarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades)
+                        MenuFunciones::ModificarClientes(TablaClientes, ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -379,16 +379,16 @@ int main()
                     
                 switch (subopcion1) {
                     case 1:
-                        void MenuFunciones:: InsertarCiudad(ListaCircular* ListaCiudades)
+                        MenuFunciones:: InsertarCiudad(ListaCiudades);
                         break;
                     case 2:
-                        void MenuFunciones:: EliminarCiudad(ListaCircular* ListaCiudades)
+                        MenuFunciones:: EliminarCiudad(ListaCiudades);
                         break;
                     case 3:
-                        void MenuFunciones::EncontrarCiudad(ListaCircular* ListaCiudades);
+                        MenuFunciones::EncontrarCiudad(ListaCiudades);
                         break;
                     case 4:
-                        void MenuFunciones::ModificarCiudad(ListaCircular* ListaCiudades);
+                        MenuFunciones::ModificarCiudad(ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;

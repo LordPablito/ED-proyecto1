@@ -1,9 +1,11 @@
 ﻿#pragma once
+#include <string>
+
 #include "../../NodoBase.h"
 
 class NodoCliente : public NodoBase {
     public:
-        std::string Cedula;
+        int Cedula;
         std::string Nombre;
         int CodCiudad;
         int Telefono;

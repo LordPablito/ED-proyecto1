@@ -585,7 +585,7 @@ void MenuFunciones::ModificarAdministrador(TablaHash* TablaAdmins, ListaCircular
 #pragma endregion 
 
 #pragma region Marca
-void MenuFunciones::InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaPasillos) {
+void MenuFunciones::InsertarMarcaProducto(ListaDobleCircular* Lista, ListaSimple* ListaPasillos) {
     int codPasillo, codProducto, codMarca, cantidadGondola;
     double precio;
     string nombre;
@@ -635,11 +635,11 @@ void MenuFunciones::InsertarMarcaProducto(ListaDoble* Lista, ListaSimple* ListaP
     Lista->InsertarFinal(new NodoMarca(codPasillo, codProducto, codMarca, nombre, cantidadGondola, precio));
     cout << "Marca de producto insertada correctamente." << endl;
 }
-void MenuFunciones::EliminarMarcaProducto(ListaDoble* Lista) {
+void MenuFunciones::EliminarMarcaProducto(ListaDobleCircular* Lista) {
     //Lista->EliminarTodo();
     cout << "Todas las marcas de productos han sido eliminadas." << endl;
 }
-void MenuFunciones::EncontrarMarcaProducto(ListaDoble* Lista) {
+void MenuFunciones::EncontrarMarcaProducto(ListaDobleCircular* Lista) {
     int codPasillo, codProducto, codMarca;
     cout << "Ingrese el código de pasillo: ";
     cin >> codPasillo;
@@ -663,7 +663,7 @@ void MenuFunciones::EncontrarMarcaProducto(ListaDoble* Lista) {
         cout << "No se encontró la marca de producto." << endl;
     }
 }
-void MenuFunciones::ModificarMarcaProducto(ListaDoble* Lista) {
+void MenuFunciones::ModificarMarcaProducto(ListaDobleCircular* Lista) {
     int codPasillo, codProducto, codMarca;
     cout << "Ingrese el código de pasillo: ";
     cin >> codPasillo;
@@ -820,7 +820,7 @@ void MenuFunciones::ModificarCiudad(ListaCircular* ListaCiudades) {
 #pragma endregion
 
 #pragma region Clientes
-void MenuFunciones::InsertarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades, int totalClientes){
+void MenuFunciones::InsertarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades, int totalClientes){
      string LineaCliente;
     cout << "Ingrese la siguiente información separada por ';'" << endl;
     cout << "Cedula;Nombre;Codigo de ciudad;Telefono;Correo" << endl;
@@ -828,16 +828,18 @@ void MenuFunciones::InsertarCliente(TablaHash* TablaClientes, ListaCircular* Lis
 
     NodoCliente* Cliente = new NodoCliente(LineaCliente);
     // Aplicar función de hashing
-    int hash = (stoi(Cliente->Cedula) % totalClientes) + 1;
+    int hash = (Cliente->Cedula % totalClientes) + 1;
     TablaClientes->InsertarNodo(Cliente, hash);
     TablaClientes->Mostrar();
 }
-void MenuFunciones::EliminarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades){ string Cedula;
+
+void MenuFunciones::EliminarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
+    int Cedula;
     cout << "Ingrese la cedula del cliente a eliminar" << endl;
     cin >> Cedula;
 
     // Buscar cliente por cedula
-    int hash = (stoi(Cedula) % totalClientes) + 1;
+    int hash = (Cedula % 13) + 1;
     TablaClientes->EliminarNodo(hash, [Cedula](NodoBase* Nodo) {
         if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo)) {
             return Cliente->Cedula == Cedula;
@@ -846,13 +848,13 @@ void MenuFunciones::EliminarCliente(TablaHash* TablaClientes, ListaCircular* Lis
     });
     TablaClientes->Mostrar();
 }
-void MenuFunciones::EncontrarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
-    string Cedula;
+void MenuFunciones::EncontrarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
+    int Cedula;
     cout << "Ingrese la cedula del cliente a buscar" << endl;
     cin >> Cedula;
 
     // Buscar cliente por cedula
-    int hash = (stoi(Cedula) % totalClientes) + 1;
+    int hash = (Cedula % 13) + 1;
     NodoBase* Nodo = TablaClientes->BuscarNodo(hash, [Cedula](NodoBase* Nodo) {
         if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo)) {
             return Cliente->Cedula == Cedula;
@@ -868,13 +870,13 @@ void MenuFunciones::EncontrarCliente(TablaHash* TablaClientes, ListaCircular* Li
     }
 
 }
-void MenuFunciones::ModificarCliente(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
-     string Cedula;
+void MenuFunciones::ModificarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades){
+    int Cedula;
     cout << "Ingrese la cedula del cliente a modificar" << endl;
     cin >> Cedula;
 
     // Buscar cliente por cedula
-    int hash = (stoi(Cedula) % totalClientes) + 1;
+    int hash = (Cedula % 13) + 1;
     NodoBase* Nodo = TablaClientes->BuscarNodo(hash, [Cedula](NodoBase* Nodo) {
         if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo)) {
             return Cliente->Cedula == Cedula;
@@ -900,7 +902,15 @@ void MenuFunciones::ModificarCliente(TablaHash* TablaClientes, ListaCircular* Li
     cin >> CodCiudad;
     // Validar que la ciudad exista
     // Si la ciudad no existe, mostrar un mensaje de error y volver al menú
-    if (!ListaCiudades->BuscarNodo(CodCiudad)) {
+    if (!ListaCiudades->EncontrarPorPredicado([CodCiudad](NodoBase* Nodo)
+    {
+        if (NodoCiudad* Ciudad = dynamic_cast<NodoCiudad*>(Nodo))
+        {
+            return Ciudad->CodCiudad == CodCiudad;
+        }
+        return false;
+    }))
+    {
         cout << "La ciudad ingresada no existe." << endl;
         return;
     }

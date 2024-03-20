@@ -9,7 +9,7 @@ NodoCliente::NodoCliente(std::string& Linea) {
     while (std::getline(StreamLinea, Atributo, ';')) {
         switch (Indice) {
             case 0:
-                Cedula = Atributo;
+                Cedula = std::stoi(Atributo);
                 break;
             case 1:
                 Nombre = Atributo;

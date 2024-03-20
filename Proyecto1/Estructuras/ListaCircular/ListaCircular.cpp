@@ -1,7 +1,7 @@
 #include "ListaCircular.h"
 #include <iostream>
 
->>>>>>> origin/Clientes
+//>>>>>>> origin/Clientes
 ListaCircular::ListaCircular() : primero(nullptr) {}
 
 ListaCircular::~ListaCircular()
