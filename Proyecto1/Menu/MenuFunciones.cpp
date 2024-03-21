@@ -828,8 +828,8 @@ void MenuFunciones::InsertarClientes(TablaHash* TablaClientes, ListaCircular* Li
 
     NodoCliente* Cliente = new NodoCliente(LineaCliente);
     // Aplicar función de hashing
-    int hash = (Cliente->Cedula % totalClientes) + 1;
-    TablaClientes->InsertarNodo(Cliente, hash);
+    //int hash = (Cliente->Cedula % totalClientes) + 1;
+    TablaClientes->InsertarNodo(Cliente, Cliente->Cedula);
     TablaClientes->Mostrar();
 }
 
@@ -839,8 +839,8 @@ void MenuFunciones::EliminarClientes(TablaHash* TablaClientes, ListaCircular* Li
     cin >> Cedula;
 
     // Buscar cliente por cedula
-    int hash = (Cedula % 13) + 1;
-    TablaClientes->EliminarNodo(hash, [Cedula](NodoBase* Nodo) {
+    //int hash = (Cedula % 13) + 1;
+    TablaClientes->EliminarNodo(Cedula, [Cedula](NodoBase* Nodo) {
         if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo)) {
             return Cliente->Cedula == Cedula;
         }
@@ -854,8 +854,7 @@ void MenuFunciones::EncontrarClientes(TablaHash* TablaClientes, ListaCircular* L
     cin >> Cedula;
 
     // Buscar cliente por cedula
-    int hash = (Cedula % 13) + 1;
-    NodoBase* Nodo = TablaClientes->BuscarNodo(hash, [Cedula](NodoBase* Nodo) {
+    NodoBase* Nodo = TablaClientes->BuscarNodo(Cedula, [Cedula](NodoBase* Nodo) {
         if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo)) {
             return Cliente->Cedula == Cedula;
         }
@@ -876,8 +875,8 @@ void MenuFunciones::ModificarClientes(TablaHash* TablaClientes, ListaCircular* L
     cin >> Cedula;
 
     // Buscar cliente por cedula
-    int hash = (Cedula % 13) + 1;
-    NodoBase* Nodo = TablaClientes->BuscarNodo(hash, [Cedula](NodoBase* Nodo) {
+    //int hash = (Cedula % 13) + 1;
+    NodoBase* Nodo = TablaClientes->BuscarNodo(Cedula, [Cedula](NodoBase* Nodo) {
         if (NodoCliente* Cliente = dynamic_cast<NodoCliente*>(Nodo)) {
             return Cliente->Cedula == Cedula;
         }

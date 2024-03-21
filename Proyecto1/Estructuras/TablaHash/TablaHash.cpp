@@ -10,7 +10,7 @@ TablaHash::TablaHash()
 
 int TablaHash::ConseguirHash(int Llave)
 {
-    return Llave%13;
+    return Llave%TAMANNO;
 }
 
 void TablaHash::InsertarNodo(NodoBase* Nodo, int Llave)

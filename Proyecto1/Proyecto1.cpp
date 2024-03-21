@@ -12,6 +12,7 @@
 #include "Estructuras/Nodos/NodosDerivados/Producto/NodoProducto.h"
 #include "Estructuras/Nodos/NodosDerivados/Marca/NodoMarca.h"
 #include "Estructuras/Nodos/NodosDerivados/Ciudad/NodoCiudad.h"
+#include "Estructuras/Nodos/NodosDerivados/Clientes/NodoCliente.h"
 #include "Estructuras/TablaHash/TablaHash.h"
 #include "Menu/MenuFunciones.h"
 
@@ -108,7 +109,23 @@ TablaHash* CargarAdmins(string NombreArchivo)
     }
     return ListaArchivo;
 }
-
+TablaHash* CargarClientes(string NombreArchivo)
+{
+    ifstream Archivo;
+    TablaHash* ListaArchivo = new TablaHash();
+    const string Directorio = DIRECTORIO+NombreArchivo;
+    cout<<Directorio<<endl;
+    Archivo.open(Directorio);
+    string Basura;
+    getline(Archivo, Basura);
+    for(string Linea; getline(Archivo, Linea);)
+    {
+        if (Linea.empty()) continue;
+        NodoCliente* NuevoNodo = new NodoCliente(Linea);
+        ListaArchivo->InsertarNodo(NuevoNodo, NuevoNodo->Cedula);
+    }
+    return ListaArchivo;
+}
 int main()
 {
     
@@ -119,7 +136,7 @@ int main()
     ListaDobleCircular* ListaMarcas = CargarMarcaProductos("MarcasProductos.txt");
     ListaCircular* ListaCiudades = CargarCiudad("Ciudades.txt");
     TablaHash* TablaAdmins = CargarAdmins("Administradores.txt");
-    TablaHash* TablaClientes = new TablaHash();
+    TablaHash* TablaClientes = CargarClientes("Clientes.txt");
     ListaPasillos->Mostrar();
 
     bool EsAdmin = MenuFunciones::Login(TablaAdmins, TablaClientes);
@@ -302,6 +319,8 @@ int main()
                     cout << "Cliente:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
+                    cout << "3. Buscar" << endl;
+                    cout << "3. Modificar" << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
