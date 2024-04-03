@@ -239,3 +239,13 @@ void ListaSimple::Mostrar()
 		cout << endl;
 	}
 }
+
+void ListaSimple::IterarNodos(function<void(NodoBase*)> func)
+{
+	NodoBase* Aux = Primero;
+	while (Aux)
+	{
+		func(Aux);
+		Aux = Aux->Siguiente;
+	}
+}

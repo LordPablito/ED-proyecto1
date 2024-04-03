@@ -23,6 +23,8 @@ public:
 	int ConseguirPosicion(NodoBase* Nodo);
 	int largoLista();
 
+	void IterarNodos(function<void(NodoBase*)> func);
+
 	NodoBase* GetPrimero() const
 	{
 		return Primero;
