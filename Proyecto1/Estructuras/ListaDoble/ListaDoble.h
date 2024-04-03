@@ -21,6 +21,8 @@ public:
     void Mostrar();
     int largoLista();
 
+    void IterarNodos(std::function<void(NodoBase*)> func);
+
     NodoBase* GetPrimero() const
     {
         return primero;

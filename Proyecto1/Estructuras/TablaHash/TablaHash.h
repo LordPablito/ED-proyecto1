@@ -19,5 +19,7 @@ public:
 
     void EliminarNodo(int Llave, function<bool(NodoBase*)> func);
 
+    void IterarNodos(function<void(NodoBase*)> func);
+
     void Mostrar();
 };
