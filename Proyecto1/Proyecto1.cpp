@@ -5,6 +5,7 @@
 #include <xlsxwriter.h>
 #include <vector>
 
+#include "BibliotecaReportes/BibliotecaReportes.h"
 #include "Estructuras/ListaDoble/ListaDoble.h"
 #include "Estructuras/ListaSimple/ListaSimple.h"
 #include "Estructuras/ListaDobleCircular/ListaDobleCircular.h"
@@ -131,8 +132,6 @@ TablaHash* CargarClientes(string NombreArchivo)
 }
 int main()
 {
-    
-    
     ListaSimple* ListaPasillos = CargarPasillos("Pasillos.txt");
     ListaDoble* ListaProds = CargarProductosPasillo("ProductosPasillos.txt");
     ListaDoble* ListaInventario = CargarInventario("Inventario.txt");
@@ -155,7 +154,7 @@ int main()
     cout<<endl;
     TablaAdmins->Mostrar();
     cout<<endl;
-
+    
     int opcion, subopcion1;
 
     do {
@@ -168,7 +167,8 @@ int main()
         cout << "5. Clientes" << endl;
         cout << "6. Administrador" << endl;
         cout << "7. Ciudad" << endl;
-        cout << "8. Salir" << endl;
+        cout << "8. Reportes" << endl;
+        cout << "9. Salir" << endl;
         // Solicitar al usuario que ingrese una opción
         cout << "Ingrese el numero de opcion: ";
         cin >> opcion;
@@ -304,7 +304,7 @@ int main()
                     
                         break;
                     default:
-                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 6." << endl;
+                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 4." << endl;
                         break;
                 }
             } while (subopcion1 != 0);
@@ -456,19 +456,78 @@ int main()
                         cout << "Volviendo al menu principal..." << endl;
                         break;
                     default:
-                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 3." << endl;
+                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 4." << endl;
                         break;
                 }
             } while (subopcion1 != 0);
             break;
-             case 8:
+            case 8:
+                do {
+                    // Mostrar submenú para la opción 1
+                    cout << "Reportes" << endl;
+                    cout << "1. Reporte Pasillos" << endl;
+                    cout << "2. Reporte Productos pasillo" << endl;
+                    cout << "3. Reporte Marcas Producto" << endl;
+                    cout << "4. Reporte Administradores" << endl;
+                    cout << "5. Reporte Clientes" << endl;
+                    cout << "6. Reporte Ciudades" << endl;
+                    cout << "7. Reporte Pasillo mas visitado" << endl;
+                    cout << "8. Reporte Pasillo menos visitado" << endl;
+                    cout << "9. Reporte Producto mas buscado" << endl;
+                    cout << "10. Reporte Marca mas buscada" << endl;
+                    cout << "0. Atras" << endl;
+    
+                    cout << "Ingrese el numero de subopcion: ";
+                    cin >> subopcion1;
+                    
+                switch (subopcion1) {
+                    case 1:
+                        BibliotecaReportes::ReportarPasillos(ListaPasillos);
+                        break;
+                    case 2:
+                        BibliotecaReportes::ReportarProductosPasillo(ListaProds);
+                        break;
+                    case 3:
+                        BibliotecaReportes::ReportarMarcasProducto(ListaMarcas);
+                        break;
+                    case 4:
+                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+                        break;
+                     case 5:
+                       BibliotecaReportes::ReportarClientes(TablaClientes);
+                        break;
+                     case 6:
+                        BibliotecaReportes::ReportarCiudades(ListaCiudades);
+                        break;
+                     case 7:
+                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+                        break;
+                     case 8:
+                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+                        break;
+                     case 9:
+                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+                        break;
+                     case 10:
+                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+                        break;
+                    case 0:
+                        cout << "Volviendo al menu principal..." << endl;
+                        break;
+                    default:
+                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 10." << endl;
+                        break;
+                }
+            }while (subopcion1 != 10);
+                break;
+             case 9:
                 cout << "Saliendo del programa..." << endl;
                 break;
             default:
-                cout << "Opción no válida. Por favor ingresa un número del 1 al 7." << endl;
+                cout << "Opción no válida. Por favor ingresa un número del 1 al 8." << endl;
                 break;
         }
-    } while (opcion != 8);
+    } while (opcion != 9);
 
     return 0;
     
