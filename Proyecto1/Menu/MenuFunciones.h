@@ -5,6 +5,7 @@
 #include "../Estructuras/ListaSimple/ListaSimple.h"
 #include "../Estructuras/TablaHash/TablaHash.h"
 
+
 class MenuFunciones
 {
 public:
@@ -54,6 +55,7 @@ public:
     static void EliminarCiudad(ListaCircular* ListaCiudades);
     static void EncontrarCiudad(ListaCircular* ListaCiudades);
     static void ModificarCiudad(ListaCircular* ListaCiudades);
+    static void ReporteCiudades(ListaCircular* ListaCiudad);
 #pragma endregion
 
 #pragma region Clientes
@@ -61,5 +63,6 @@ public:
     static void EliminarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades);
     static void EncontrarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades);
     static void ModificarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades);
+    static void GenerarReporteClientes(TablaHash* TablaClientes);
 #pragma endregion 
 };
