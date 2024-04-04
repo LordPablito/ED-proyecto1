@@ -5,6 +5,7 @@
 #include "../Estructuras/ListaSimple/ListaSimple.h"
 #include "../Estructuras/TablaHash/TablaHash.h"
 
+
 class MenuFunciones
 {
 public:
