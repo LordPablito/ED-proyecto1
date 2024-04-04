@@ -181,9 +181,6 @@ int main()
                     cout << "2. Eliminar" << endl;
                     cout << "3. Buscar" << endl;
                     cout << "4. Modificar" << endl;
-                    cout << "5. Reporte pasillos supermercado" << endl;
-                    cout << "6. Reporte pasillo mas visto" << endl;
-                    cout << "7. Reporte pasillo menos visto" << endl;
                     cout << "0. Atras" << endl;
 
                     cout << "Ingrese el numero de subopcion: ";
@@ -206,19 +203,11 @@ int main()
                         case 5:
                             BibliotecaReportes::ReportarPasillos(ListaPasillos);
                             break;
-                    case 6:
-                            BibliotecaReportes::ReportarPasilloMasVisto(ListaPasillos);
-                            //MenuFunciones::ReportePasilloMasVisto(ListaPasillos);
-                            break;
-                        case 7:
-                            BibliotecaReportes::ReportarPasilloMenosVisto(ListaPasillos);
-                            //MenuFunciones::ReportePasilloMenosVisto(ListaPasillos);
-                            break;
                         case 0:
                             cout << "Volviendo al menu principal..." << endl;
                             break;
                         default:
-                            cout << "Subopcion no válida. Por favor ingresa un número del 1 al 7." << endl;
+                            cout << "Subopcion no válida. Por favor ingresa un número del 1 al 4." << endl;
                             break;
                     }
                 } while (subopcion1 != 0);
@@ -230,8 +219,6 @@ int main()
                     cout << "2. Eliminar" << endl;
                     cout << "3. Buscar" << endl;
                     cout << "4. Modificar" << endl;
-                    cout << "5. Reporte productos de un pasillo" << endl;
-                    cout << "6. Reporte producto mas buscado" << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
@@ -252,18 +239,11 @@ int main()
                     case 4:
                         MenuFunciones::ModificarProducto(ListaProds, ListaPasillos);
                         break;
-                    case 5:
-                        BibliotecaReportes::ReportarProductosPasillo(ListaProds);
-                        break;
-                    case 6:
-                        BibliotecaReportes::ReportarProductosMasBuscados(ListaProds);
-                        //MenuFunciones::ReporteProductoMasVisto(ListaProds, ListaPasillos);
-                        break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
                         break;
                     default:
-                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 6." << endl;
+                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 4." << endl;
                         break;
                 }
             } while (subopcion1 != 0);
@@ -276,8 +256,6 @@ int main()
                     cout << "2. Eliminar" << endl;
                     cout << "3. Buscar" << endl;
                     cout << "4. Modificar" << endl;
-                    cout << "5. Reporte Marcas productos" << endl;
-                    cout << "6. Reporte Marcas mas buscadas" << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
@@ -297,17 +275,8 @@ int main()
                     case 4:
                         MenuFunciones::ModificarMarcaProducto(ListaMarcas);
                         break;
-                case 5:
-                        BibliotecaReportes::ReportarMarcasProducto(ListaMarcas);
-                        //MenuFunciones::ReporteMarcasProducto(ListaMarcas);
-                        break;
-                case 6:
-                        BibliotecaReportes::ReportarMarcasMasBuscadas(ListaMarcas);
-                        //MenuFunciones::ReporteMarcaMasVista(ListaMarcas);
-                        break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
-                    
                         break;
                     default:
                         cout << "Subopcion no válida. Por favor ingresa un número del 1 al 4." << endl;
@@ -359,7 +328,6 @@ int main()
                     cout << "2. Eliminar" << endl;
                     cout << "3. Buscar" << endl;
                     cout << "4. Modificar" << endl;
-                    cout << "5. Reporte clientes" << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
@@ -379,14 +347,11 @@ int main()
                     case 4:
                         MenuFunciones::ModificarClientes(TablaClientes, ListaCiudades);
                         break;
-                case 5:
-                        BibliotecaReportes::ReportarClientes(TablaClientes);
-                        break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
                         break;
                     default:
-                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 5." << endl;
+                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 4." << endl;
                         break;
                 }
             } while (subopcion1 != 0);
@@ -399,7 +364,6 @@ int main()
                     cout << "2. Eliminar" << endl;
                     cout << "3. Buscar" << endl;
                     cout << "4. Modificar" << endl;
-                    cout << "5. Reporte Administradores" << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
@@ -419,14 +383,11 @@ int main()
                     case 4:
                         MenuFunciones::ModificarAdministrador(TablaAdmins, ListaCiudades);
                         break;
-                case 5:
-                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
-                        break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
                         break;
                     default:
-                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 3." << endl;
+                        cout << "Subopcion no válida. Por favor ingresa un número del 1 al 4." << endl;
                         break;
                 }
             } while (subopcion1 != 0);
@@ -439,7 +400,6 @@ int main()
                     cout << "2. Eliminar " << endl;
                     cout << "3. Buscar" << endl;
                     cout << "4. Modificar" << endl;
-                    cout << "5. Generar reporte " << endl;
                     cout << "0. Atras" << endl;
     
                     cout << "Ingrese el numero de subopcion: ";
@@ -458,9 +418,6 @@ int main()
                         break;
                     case 4:
                         MenuFunciones::ModificarCiudad(ListaCiudades);
-                        break;
-                case 5:
-                        BibliotecaReportes::ReportarCiudades(ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
