@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+#include "BibliotecaReportes/BibliotecaReportes.h"
 #include "Estructuras/ListaDoble/ListaDoble.h"
 #include "Estructuras/ListaSimple/ListaSimple.h"
 #include "Estructuras/ListaDobleCircular/ListaDobleCircular.h"
@@ -111,8 +112,6 @@ TablaHash* CargarAdmins(string NombreArchivo)
 
 int main()
 {
-    
-    
     ListaSimple* ListaPasillos = CargarPasillos("Pasillos.txt");
     ListaDoble* ListaProds = CargarProductosPasillo("ProductosPasillos.txt");
     ListaDoble* ListaInventario = CargarInventario("Inventario.txt");
@@ -136,6 +135,10 @@ int main()
     TablaAdmins->Mostrar();
     cout<<endl;
 
+    BibliotecaReportes::ReportarPasillos(ListaPasillos);
+    BibliotecaReportes::ReportarProductosPasillo(ListaProds);
+    BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+    
     int opcion, subopcion1;
 
     do {

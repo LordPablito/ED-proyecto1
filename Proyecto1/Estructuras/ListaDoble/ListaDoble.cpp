@@ -224,6 +224,15 @@ int ListaDoble::ConseguirPosicion(NodoBase* Nodo)
     return -1;
 }
 
+void ListaDoble::IterarNodos(std::function<void(NodoBase*)> func)
+{
+    NodoBase* Aux = primero;
+    while (Aux)
+    {
+        func(Aux);
+        Aux = Aux->Siguiente;
+    }
+}
 
 void ListaDoble::Mostrar()
 {

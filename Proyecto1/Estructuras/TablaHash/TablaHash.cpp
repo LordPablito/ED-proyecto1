@@ -36,6 +36,16 @@ void TablaHash::EliminarNodo(int Llave, function<bool(NodoBase*)> func)
     Lista->BorrarPosicion(Lista->ConseguirPosicion(Nodo));
 }
 
+void TablaHash::IterarNodos(function<void(NodoBase*)> func)
+{
+    for (int i = 0; i<TAMANNO;i++)
+    {
+        if (Tabla[i]->ListaVacia()) continue;
+        Tabla[i]->IterarNodos(func);
+        //cout<<"______________________________"<<endl;
+    }
+}
+
 void TablaHash::Mostrar()
 {
     for (int i = 0; i<TAMANNO;i++)
