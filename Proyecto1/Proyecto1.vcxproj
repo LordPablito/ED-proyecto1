@@ -169,7 +169,6 @@
     <ClCompile Include="Estructuras\Nodos\NodosDerivados\Producto\NodoProducto.cpp" />
     <ClCompile Include="Estructuras\TablaHash\TablaHash.cpp" />
     <ClCompile Include="LectorArchivos\LectorArchivos.cpp" />
-    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Menu\MenuFunciones.cpp" />
     <ClCompile Include="Proyecto1.cpp" />
   </ItemGroup>

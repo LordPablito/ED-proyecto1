@@ -146,6 +146,7 @@ void MenuFunciones::BuscarPasillo(ListaSimple* Lista)
     if (NodoPasillo* Pasillo = dynamic_cast<NodoPasillo*>(Nodo))
     {
         Pasillo->Mostrar();
+        Pasillo->Vistas++;
         cout<<"Pasillo encontrado"<<endl;
         return;
     }
@@ -282,7 +283,7 @@ void MenuFunciones::BuscarProducto(ListaDoble* Lista, ListaSimple* ListaPasillos
         cout<<"El pasillo ingresado no existe"<<endl;
         return;
     }
-    
+    NPasillo->Vistas++;
     int CodProd;
     cout << "Ingrese el código de producto: ";
     cin >> CodProd;
@@ -297,6 +298,7 @@ void MenuFunciones::BuscarProducto(ListaDoble* Lista, ListaSimple* ListaPasillos
     if (NodoProducto* Prod = dynamic_cast<NodoProducto*>(NProducto))
     {
         Prod->Mostrar();
+        Prod->Busquedas++;
         cout<<"Se encontró el producto solocitado"<<endl;
         return;
     }
@@ -439,6 +441,7 @@ void MenuFunciones::BuscarInventario(ListaDoble* ListaInventario)
     if (NodoInventario* Inventario = dynamic_cast<NodoInventario*>(Nodo))
     {
         Inventario->Mostrar();
+        Inventario->Vistas++;
         cout<<"Inventario encontrado exitosamente"<<endl;
         return;
     }
@@ -533,6 +536,7 @@ void MenuFunciones::EncontrarAdministrador(TablaHash* TablaAdmins, ListaCircular
     if (NodoAdmin* Admin = dynamic_cast<NodoAdmin*>(Nodo))
     {
         cout<<"Se encontró el administrador: "<<endl;
+        Admin->Vistas++;
         Admin->Mostrar();
         return;
     }
@@ -658,6 +662,7 @@ void MenuFunciones::EncontrarMarcaProducto(ListaDobleCircular* Lista) {
         NodoMarca* marca = dynamic_cast<NodoMarca*>(nodoMarca);
         cout << "Marca de producto encontrada:" << endl;
         marca->Mostrar();
+        marca->Busquedas++;
     } else {
         cout << "No se encontró la marca de producto." << endl;
     }
@@ -707,6 +712,7 @@ void MenuFunciones::ModificarMarcaProducto(ListaDobleCircular* Lista) {
     cout << "Marca de producto modificada:" << endl;
     marca->Mostrar();
 }
+/*
 void MenuFunciones::ReporteMarcasProducto(ListaDobleCircular* Lista) {
     lxw_workbook *workbook = workbook_new("Reporte_Marcas_Producto.xlsx");
     lxw_worksheet *worksheet = workbook_add_worksheet(workbook, NULL);
@@ -725,7 +731,7 @@ void MenuFunciones::ReporteMarcasProducto(ListaDobleCircular* Lista) {
 
     workbook_close(workbook);
 }
-
+*/
 #pragma endregion
 
 #pragma region Ciudades
@@ -833,6 +839,7 @@ void MenuFunciones::ModificarCiudad(ListaCircular* ListaCiudades) {
     cout << "Ciudad modificada:" << endl;
     ciudad->Mostrar();
 }
+/*
 void MenuFunciones:: ReporteCiudades(ListaCircular* ListaCiudades)
     {
     lxw_workbook *workbook = workbook_new("Reporte_Ciudades.xlsx");
@@ -851,6 +858,7 @@ void MenuFunciones:: ReporteCiudades(ListaCircular* ListaCiudades)
 
     workbook_close(workbook);
     }
+*/
 #pragma endregion
 
 #pragma region Clientes
@@ -958,7 +966,7 @@ void MenuFunciones::ModificarClientes(TablaHash* TablaClientes, ListaCircular* L
     Cliente->Mostrar();
     cout << "Datos actualizados exitosamente" << endl;
 }
-
+/*
 void MenuFunciones::GenerarReporteClientes(TablaHash* TablaClientes) {
     lxw_workbook *workbook = workbook_new("Reporte_Clientes.xlsx");
     lxw_worksheet *worksheet = workbook_add_worksheet(workbook, NULL);
@@ -987,4 +995,5 @@ void MenuFunciones::GenerarReporteClientes(TablaHash* TablaClientes) {
 
     workbook_close(workbook);
     }
+*/
 #pragma endregion 

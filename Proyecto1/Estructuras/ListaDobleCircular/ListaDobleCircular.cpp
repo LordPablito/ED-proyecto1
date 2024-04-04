@@ -200,3 +200,19 @@ int ListaDobleCircular::largoLista()
 
     return cont;
 }
+
+void ListaDobleCircular::IterarNodos(std::function<void(NodoBase*)> func)
+{
+    if (ListaVacia())
+    {
+        std::cout << "La lista está vacía." << std::endl;
+        return;
+    }
+
+    NodoBase* Aux = primero;
+    do
+    {
+        func(Aux);
+        Aux = Aux->Siguiente;
+    } while (Aux != primero);
+}

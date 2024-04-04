@@ -1,9 +1,6 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <unordered_map>
-#include <xlsxwriter.h>
-#include <vector>
 
 #include "BibliotecaReportes/BibliotecaReportes.h"
 #include "Estructuras/ListaDoble/ListaDoble.h"
@@ -29,8 +26,8 @@ ListaSimple* CargarPasillos(string NombreArchivo)
     const string Directorio = DIRECTORIO+NombreArchivo;
     cout<<Directorio<<endl;
     Archivo.open(Directorio);
-    string Basura;
-    getline(Archivo, Basura);
+    //string Basura;
+    //getline(Archivo, Basura);
     for(string Linea; getline(Archivo, Linea);)
     {
         ListaArchivo->InsertarFinal(new NodoPasillo(Linea));
@@ -44,8 +41,8 @@ ListaDoble* CargarProductosPasillo(string NombreArchivo)
     const string Directorio = DIRECTORIO+NombreArchivo;
     cout<<Directorio<<endl;
     Archivo.open(Directorio);
-    string Basura;
-    getline(Archivo, Basura);
+    //string Basura;
+    //getline(Archivo, Basura);
     for(string Linea; getline(Archivo, Linea);)
     {
         ListaArchivo->InsertarFinal(new NodoProducto(Linea));
@@ -59,8 +56,8 @@ ListaDoble* CargarInventario(string NombreArchivo)
     const string Directorio = DIRECTORIO+NombreArchivo;
     cout<<Directorio<<endl;
     Archivo.open(Directorio);
-    string Basura;
-    getline(Archivo, Basura);
+    //string Basura;
+    //getline(Archivo, Basura);
     for(string Linea; getline(Archivo, Linea);)
     {
         if (Linea.empty()) continue;
@@ -74,8 +71,8 @@ ListaDobleCircular* CargarMarcaProductos(string NombreArchivo){
     const string Directorio = DIRECTORIO+NombreArchivo;
     cout<<Directorio<<endl;
     Archivo.open(Directorio);
-    string Basura;
-    getline(Archivo, Basura);
+    //string Basura;
+    //getline(Archivo, Basura);
     for(string Linea; getline(Archivo, Linea);)
     {
         if (Linea.empty()) continue;
@@ -89,8 +86,8 @@ ListaCircular* CargarCiudad(string NombreArchivo){
     const string Directorio = DIRECTORIO+NombreArchivo;
     cout<<Directorio<<endl;
     Archivo.open(Directorio);
-    string Basura;
-    getline(Archivo, Basura);
+    //string Basura;
+    //getline(Archivo, Basura);
     for(string Linea; getline(Archivo, Linea);)
     {
         if (Linea.empty()) continue;
@@ -120,8 +117,8 @@ TablaHash* CargarClientes(string NombreArchivo)
     const string Directorio = DIRECTORIO+NombreArchivo;
     cout<<Directorio<<endl;
     Archivo.open(Directorio);
-    string Basura;
-    getline(Archivo, Basura);
+    //string Basura;
+    //getline(Archivo, Basura);
     for(string Linea; getline(Archivo, Linea);)
     {
         if (Linea.empty()) continue;
@@ -207,13 +204,15 @@ int main()
                             MenuFunciones::ModificarPasillo(ListaPasillos);
                             break;
                         case 5:
-                            MenuFunciones::ReportePasillo(ListaPasillos);
+                            BibliotecaReportes::ReportarPasillos(ListaPasillos);
                             break;
-                        case 6:
-                            MenuFunciones::ReportePasilloMasVisto(ListaPasillos);
+                    case 6:
+                            BibliotecaReportes::ReportarPasilloMasVisto(ListaPasillos);
+                            //MenuFunciones::ReportePasilloMasVisto(ListaPasillos);
                             break;
                         case 7:
-                            MenuFunciones::ReportePasilloMenosVisto(ListaPasillos);
+                            BibliotecaReportes::ReportarPasilloMenosVisto(ListaPasillos);
+                            //MenuFunciones::ReportePasilloMenosVisto(ListaPasillos);
                             break;
                         case 0:
                             cout << "Volviendo al menu principal..." << endl;
@@ -254,10 +253,11 @@ int main()
                         MenuFunciones::ModificarProducto(ListaProds, ListaPasillos);
                         break;
                     case 5:
-                        MenuFunciones::ReporteProducto(ListaProds, ListaPasillos);
+                        BibliotecaReportes::ReportarProductosPasillo(ListaProds);
                         break;
                     case 6:
-                        MenuFunciones::ReporteProductoMasVisto(ListaProds, ListaPasillos);
+                        BibliotecaReportes::ReportarProductosMasBuscados(ListaProds);
+                        //MenuFunciones::ReporteProductoMasVisto(ListaProds, ListaPasillos);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -297,11 +297,13 @@ int main()
                     case 4:
                         MenuFunciones::ModificarMarcaProducto(ListaMarcas);
                         break;
-                     case 5:
-                        MenuFunciones::ReporteMarcasProducto(ListaMarcas);
+                case 5:
+                        BibliotecaReportes::ReportarMarcasProducto(ListaMarcas);
+                        //MenuFunciones::ReporteMarcasProducto(ListaMarcas);
                         break;
-                     case 6:
-                        MenuFunciones::ReporteMarcaMasVista(ListaMarcas);
+                case 6:
+                        BibliotecaReportes::ReportarMarcasMasBuscadas(ListaMarcas);
+                        //MenuFunciones::ReporteMarcaMasVista(ListaMarcas);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -377,8 +379,8 @@ int main()
                     case 4:
                         MenuFunciones::ModificarClientes(TablaClientes, ListaCiudades);
                         break;
-                    case 5:
-                        MenuFunciones::GenerarReporteClientes(TablaClientes);
+                case 5:
+                        BibliotecaReportes::ReportarClientes(TablaClientes);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -417,8 +419,8 @@ int main()
                     case 4:
                         MenuFunciones::ModificarAdministrador(TablaAdmins, ListaCiudades);
                         break;
-                    case 5:
-                        MenuFunciones::ReporteAdmin(TablaAdmins);
+                case 5:
+                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -457,8 +459,8 @@ int main()
                     case 4:
                         MenuFunciones::ModificarCiudad(ListaCiudades);
                         break;
-                    case 5:
-                        MenuFunciones::ReporteCiudades(ListaCiudades);
+                case 5:
+                        BibliotecaReportes::ReportarCiudades(ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -487,6 +489,7 @@ int main()
     
                     cout << "Ingrese el numero de subopcion: ";
                     cin >> subopcion1;
+                    system("CLS");
                     
                 switch (subopcion1) {
                     case 1:
@@ -508,16 +511,16 @@ int main()
                         BibliotecaReportes::ReportarCiudades(ListaCiudades);
                         break;
                      case 7:
-                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+                        BibliotecaReportes::ReportarPasilloMasVisto(ListaPasillos);
                         break;
                      case 8:
-                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+                        BibliotecaReportes::ReportarPasilloMenosVisto(ListaPasillos);
                         break;
                      case 9:
-                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+                        BibliotecaReportes::ReportarProductosMasBuscados(ListaProds);
                         break;
                      case 10:
-                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+                        BibliotecaReportes::ReportarMarcasMasBuscadas(ListaMarcas);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -526,7 +529,7 @@ int main()
                         cout << "Subopcion no válida. Por favor ingresa un número del 1 al 10." << endl;
                         break;
                 }
-            }while (subopcion1 != 10);
+            }while (subopcion1 != 0);
                 break;
              case 9:
                 cout << "Saliendo del programa..." << endl;
