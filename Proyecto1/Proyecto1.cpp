@@ -172,6 +172,7 @@ int main()
         // Solicitar al usuario que ingrese una opción
         cout << "Ingrese el numero de opcion: ";
         cin >> opcion;
+        system("CLS");
 
         // Realizar acciones según la opción seleccionada
         switch (opcion) {
@@ -190,6 +191,7 @@ int main()
 
                     cout << "Ingrese el numero de subopcion: ";
                     cin >> subopcion1;
+                    system("CLS");
                     
                     switch (subopcion1) {
                         case 1:
@@ -235,6 +237,7 @@ int main()
     
                     cout << "Ingrese el numero de subopcion: ";
                     cin >> subopcion1;
+                    system("CLS");
 
                     switch (subopcion1)
                     {
@@ -279,6 +282,7 @@ int main()
     
                     cout << "Ingrese el numero de subopcion: ";
                     cin >> subopcion1;
+                    system("CLS");
                     
                 switch (subopcion1) {
                     case 1:
@@ -321,6 +325,7 @@ int main()
     
                     cout << "Ingrese el numero de subopcion: ";
                     cin >> subopcion1;
+                    system("CLS");
                     
                 switch (subopcion1) {
                     case 1:
@@ -357,6 +362,7 @@ int main()
     
                     cout << "Ingrese el numero de subopcion: ";
                     cin >> subopcion1;
+                    system("CLS");
                     
                 switch (subopcion1) {
                     case 1:
@@ -396,6 +402,7 @@ int main()
     
                     cout << "Ingrese el numero de subopcion: ";
                     cin >> subopcion1;
+                    system("CLS");
                     
                 switch (subopcion1) {
                     case 1:
@@ -435,6 +442,7 @@ int main()
     
                     cout << "Ingrese el numero de subopcion: ";
                     cin >> subopcion1;
+                    system("CLS");
                     
                 switch (subopcion1) {
                     case 1:
@@ -527,7 +535,8 @@ int main()
                 cout << "Opción no válida. Por favor ingresa un número del 1 al 8." << endl;
                 break;
         }
-    } while (opcion != 9);
+        system("CLS");
+    } while (opcion != 8);
 
     return 0;
     
