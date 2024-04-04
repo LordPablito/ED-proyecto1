@@ -287,7 +287,7 @@ void MenuFunciones::BuscarProducto(ListaDoble* Lista, ListaSimple* ListaPasillos
     int CodProd;
     cout << "Ingrese el código de producto: ";
     cin >> CodProd;
-    NodoBase* NProducto = ListaPasillos->EncontrarPorPredicado([CodProd](NodoBase* Nodo)
+    NodoBase* NProducto = Lista->EncontrarPorPredicado([CodProd](NodoBase* Nodo)
     {
         if (NodoProducto* Prod = dynamic_cast<NodoProducto*>(Nodo))
         {
@@ -311,7 +311,7 @@ void MenuFunciones::ModificarProducto(ListaDoble* Lista, ListaSimple* ListaPasil
     int CodProd;
     cout << "Ingrese el código de producto: ";
     cin >> CodProd;
-    NodoBase* NProducto = ListaPasillos->EncontrarPorPredicado([CodProd](NodoBase* Nodo)
+    NodoBase* NProducto = Lista->EncontrarPorPredicado([CodProd](NodoBase* Nodo)
     {
         if (NodoProducto* Prod = dynamic_cast<NodoProducto*>(Nodo))
         {

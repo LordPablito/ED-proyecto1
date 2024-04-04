@@ -496,7 +496,7 @@ int main()
                 break;
         }
         system("CLS");
-    } while (opcion != 8);
+    } while (opcion != 9);
 
     return 0;
     
