@@ -379,6 +379,30 @@ void MenuFunciones::BuscarProductoAVL(ArbolAVL* Arbol)
 
 void MenuFunciones::ModificarProductoAVL(ArbolAVL* Arbol)
 {
+    string CodPasillo;
+    string CodProd;
+    
+    cout << "Ingrese el código de pasillo: ";
+    cin >> CodPasillo;
+
+    cout << "Ingrese el código de producto: ";
+    cin >> CodProd;
+
+    NodoBase* Nodo = Arbol->BuscarNodo(Arbol->Raiz, stoi(CodPasillo + CodProd));
+
+    if (NodoProducto* NodoProd = dynamic_cast<NodoProducto*>(Nodo))
+    {
+        NodoProd->Mostrar();
+        cout << "Elemento encontrado!";
+        
+        string Nombre;
+        cout << "Ingrese el nuevo nombre: ";
+        cin >> Nombre;
+        NodoProd->Nombre = Nombre;
+        return;
+    }
+    cout<<"No se encontro el producto especificado\n";
+    
 }
 #pragma endregion
 
