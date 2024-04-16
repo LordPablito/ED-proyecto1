@@ -32,3 +32,9 @@ void NodoProducto::Mostrar()
     std::cout << Pasillo<<" "<<Producto<<" "<<Nombre<<std::endl;
     //NodoBase::Mostrar();
 }
+
+int NodoProducto::GetLlave()
+{
+    std::string Test = std::to_string(Pasillo) + std::to_string(Producto);
+    return std::stoi(Test);
+}

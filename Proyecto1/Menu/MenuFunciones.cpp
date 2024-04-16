@@ -334,6 +334,52 @@ void MenuFunciones::ModificarProducto(ListaDoble* Lista, ListaSimple* ListaPasil
     Producto->Nombre = Nombre;
     Producto->Mostrar();
 }
+
+void MenuFunciones::InsertarProductoAVL(ArbolAVL* Arbol)
+{
+    cout << "Insertando en la Opción 1." << endl;
+    // Código correspondiente a insertar en la opción 1
+    int CodPasillo;
+    int CodProd;
+    string NombreProd;
+
+    cout << "Ingrese el código de pasillo: ";
+    cin >> CodPasillo;
+
+    cout << "Ingrese el código de producto: ";
+    cin >> CodProd;
+
+    cout << "Ingrese el nombre de producto: ";
+    cin >> NombreProd;
+
+    NodoProducto* Prod = new NodoProducto(CodPasillo, CodProd, NombreProd);
+    Arbol->InsertarNodo(Arbol->Raiz, false, Prod);
+    cout << "Insertado exitosamente!";
+}
+
+void MenuFunciones::BuscarProductoAVL(ArbolAVL* Arbol)
+{
+    string CodPasillo;
+    string CodProd;
+    
+    cout << "Ingrese el código de pasillo: ";
+    cin >> CodPasillo;
+
+    cout << "Ingrese el código de producto: ";
+    cin >> CodProd;
+
+    NodoBase* Nodo = Arbol->BuscarNodo(Arbol->Raiz, stoi(CodPasillo + CodProd));
+
+    if (NodoProducto* NodoProd = dynamic_cast<NodoProducto*>(Nodo))
+    {
+        NodoProd->Mostrar();
+        cout << "Elemento encontrado!";
+    }
+}
+
+void MenuFunciones::ModificarProductoAVL(ArbolAVL* Arbol)
+{
+}
 #pragma endregion
 
 #pragma region Inventario

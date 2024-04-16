@@ -18,6 +18,6 @@ public:
           Nombre(nombre)
     {
     }
-
     void Mostrar() override;
+    int GetLlave() override;
 };

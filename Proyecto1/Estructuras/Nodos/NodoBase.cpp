@@ -3,3 +3,7 @@
 void NodoBase::Mostrar()
 {
 }
+
+int NodoBase::GetLlave()
+{
+}

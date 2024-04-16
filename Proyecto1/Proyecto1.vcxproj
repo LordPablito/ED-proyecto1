@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BibliotecaReportes\BibliotecaReportes.cpp" />
+    <ClCompile Include="Estructuras\Arboles\ArbolAVL\ArbolAVL.cpp" />
     <ClCompile Include="Estructuras\ListaCircular\ListaCircular.cpp" />
     <ClCompile Include="Estructuras\ListaDobleCircular\ListaDobleCircular.cpp" />
     <ClCompile Include="Estructuras\ListaDoble\ListaDoble.cpp" />
@@ -174,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BibliotecaReportes\BibliotecaReportes.h" />
+    <ClInclude Include="Estructuras\Arboles\ArbolAVL\ArbolAVL.h" />
     <ClInclude Include="Estructuras\ListaCircular\ListaCircular.h" />
     <ClInclude Include="Estructuras\ListaDobleCircular\ListaDobleCircular.h" />
     <ClInclude Include="Estructuras\ListaDoble\ListaDoble.h" />

@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "../Estructuras/Arboles/ArbolAVL/ArbolAVL.h"
 #include "../Estructuras/ListaCircular/ListaCircular.h"
 #include "../Estructuras/ListaDoble/ListaDoble.h"
 #include "../Estructuras/ListaDobleCircular/ListaDobleCircular.h"
@@ -26,6 +27,10 @@ public:
     static void EliminarProducto(ListaDoble* Lista, ListaDobleCircular* ListaMarcas);
     static void BuscarProducto(ListaDoble* Lista, ListaSimple* ListaPasillos);
     static void ModificarProducto(ListaDoble* Lista, ListaSimple* ListaPasillos);
+
+    static void InsertarProductoAVL(ArbolAVL* Arbol);
+    static void BuscarProductoAVL(ArbolAVL* Arbol);
+    static void ModificarProductoAVL(ArbolAVL* Arbol);
 #pragma endregion
 
 #pragma region Inventario

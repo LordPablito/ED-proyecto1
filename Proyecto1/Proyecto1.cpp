@@ -3,6 +3,7 @@
 #include <string>
 
 #include "BibliotecaReportes/BibliotecaReportes.h"
+#include "Estructuras/Arboles/ArbolAVL/ArbolAVL.h"
 #include "Estructuras/ListaDoble/ListaDoble.h"
 #include "Estructuras/ListaSimple/ListaSimple.h"
 #include "Estructuras/ListaDobleCircular/ListaDobleCircular.h"
@@ -127,10 +128,30 @@ TablaHash* CargarClientes(string NombreArchivo)
     }
     return ListaArchivo;
 }
+
+ArbolAVL* CargarProductosPasillos(string NombreArchivo)
+{
+    ifstream Archivo;
+    ArbolAVL* ArbolArchivo = new ArbolAVL();
+    const string Directorio = DIRECTORIO+NombreArchivo;
+    cout<<Directorio<<endl;
+    Archivo.open(Directorio);
+    //string Basura;
+    //getline(Archivo, Basura);
+    for(string Linea; getline(Archivo, Linea);)
+    {
+        if (Linea.empty()) continue;
+        NodoCliente* NuevoNodo = new NodoCliente(Linea);
+        ArbolArchivo->InsertarNodo(ArbolArchivo->Raiz, false, NuevoNodo);
+    }
+    return ArbolArchivo;
+}
+
 int main()
 {
     ListaSimple* ListaPasillos = CargarPasillos("Pasillos.txt");
     ListaDoble* ListaProds = CargarProductosPasillo("ProductosPasillos.txt");
+    ArbolAVL* ArbolProds = CargarProductosPasillos("ProductosPasillos.txt");
     ListaDoble* ListaInventario = CargarInventario("Inventario.txt");
     ListaDobleCircular* ListaMarcas = CargarMarcaProductos("MarcasProductos.txt");
     ListaCircular* ListaCiudades = CargarCiudad("Ciudades.txt");
@@ -190,7 +211,7 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::InsertarPasillo(ListaPasillos);
+                        //MenuFunciones::InsertarPasillo(ListaPasillos);
                         break;
                     case 2:
                         MenuFunciones::EliminarPasillo(ListaPasillos);
@@ -229,16 +250,19 @@ int main()
                     switch (subopcion1)
                     {
                     case 1:
-                        MenuFunciones::InsertarProducto(ListaProds, ListaPasillos);
+                        MenuFunciones::InsertarProductoAVL(ArbolProds);
+                        //MenuFunciones::InsertarProducto(ListaProds, ListaPasillos);
                         break;
                     case 2:
                         MenuFunciones::EliminarProducto(ListaProds, ListaMarcas);
                         break;
                     case 3:
-                        MenuFunciones::BuscarProducto(ListaProds, ListaPasillos);
+                        MenuFunciones::BuscarProductoAVL(ArbolProds);
+                        //MenuFunciones::BuscarProducto(ListaProds, ListaPasillos);
                         break;
                     case 4:
-                        MenuFunciones::ModificarProducto(ListaProds, ListaPasillos);
+                        MenuFunciones::ModificarProductoAVL(ArbolProds);
+                        //MenuFunciones::ModificarProducto(ListaProds, ListaPasillos);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
