@@ -11,6 +11,7 @@ public:
     std::string Nombre;
     int CantidadGondola;
     double Precio;
+    int Visitas;
 
     NodoMarca(const std::string& linea);
 

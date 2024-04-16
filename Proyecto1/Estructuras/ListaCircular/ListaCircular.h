@@ -20,7 +20,6 @@ public:
     int ConseguirPosicion(NodoBase* Nodo);
     void Mostrar();
     int largoLista();
-    void IterarNodos(std::function<void(NodoBase*)> func);
 
     NodoBase* GetPrimero() const;
 

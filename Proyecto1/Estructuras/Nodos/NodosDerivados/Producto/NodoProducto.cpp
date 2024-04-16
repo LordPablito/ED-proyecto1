@@ -25,6 +25,7 @@ NodoProducto::NodoProducto(const std::string& Linea)
         }
         Indice++;
     }
+    Visitas = 0;
 }
 
 void NodoProducto::Mostrar()

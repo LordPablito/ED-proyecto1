@@ -131,7 +131,7 @@ void MenuFunciones::EliminarPasillo(ListaSimple* Lista)
 void MenuFunciones::BuscarPasillo(ListaSimple* Lista)
 {
     int CodPasillo;
-    cout<<"Ingrese el código de pasillo: ";
+    cout << "Ingrese el código de pasillo: ";
     cin >> CodPasillo;
 
     NodoBase* Nodo = Lista->EncontrarPorPredicado([CodPasillo](NodoBase* Nodo)
@@ -146,8 +146,8 @@ void MenuFunciones::BuscarPasillo(ListaSimple* Lista)
     if (NodoPasillo* Pasillo = dynamic_cast<NodoPasillo*>(Nodo))
     {
         Pasillo->Mostrar();
-        Pasillo->Vistas++;
         cout<<"Pasillo encontrado"<<endl;
+        Pasillo->Visitas++;
         return;
     }
     cout<<"Pasillo no encontrado"<<endl;
@@ -275,6 +275,7 @@ void MenuFunciones::BuscarProducto(ListaDoble* Lista, ListaSimple* ListaPasillos
         if (NodoPasillo* Pasillo = dynamic_cast<NodoPasillo*>(Nodo))
         {
             return Pasillo->Codigo == CodPasillo;
+            Pasillo->Visitas++;
         }
         return false;
     });
@@ -283,11 +284,11 @@ void MenuFunciones::BuscarProducto(ListaDoble* Lista, ListaSimple* ListaPasillos
         cout<<"El pasillo ingresado no existe"<<endl;
         return;
     }
-    NPasillo->Vistas++;
+    
     int CodProd;
     cout << "Ingrese el código de producto: ";
     cin >> CodProd;
-    NodoBase* NProducto = Lista->EncontrarPorPredicado([CodProd](NodoBase* Nodo)
+    NodoBase* NProducto = ListaPasillos->EncontrarPorPredicado([CodProd](NodoBase* Nodo)
     {
         if (NodoProducto* Prod = dynamic_cast<NodoProducto*>(Nodo))
         {
@@ -298,8 +299,8 @@ void MenuFunciones::BuscarProducto(ListaDoble* Lista, ListaSimple* ListaPasillos
     if (NodoProducto* Prod = dynamic_cast<NodoProducto*>(NProducto))
     {
         Prod->Mostrar();
-        Prod->Busquedas++;
         cout<<"Se encontró el producto solocitado"<<endl;
+        Prod->Visitas++;
         return;
     }
     cout<<"No se encontró el producto solocitado"<<endl;
@@ -311,7 +312,7 @@ void MenuFunciones::ModificarProducto(ListaDoble* Lista, ListaSimple* ListaPasil
     int CodProd;
     cout << "Ingrese el código de producto: ";
     cin >> CodProd;
-    NodoBase* NProducto = Lista->EncontrarPorPredicado([CodProd](NodoBase* Nodo)
+    NodoBase* NProducto = ListaPasillos->EncontrarPorPredicado([CodProd](NodoBase* Nodo)
     {
         if (NodoProducto* Prod = dynamic_cast<NodoProducto*>(Nodo))
         {
@@ -441,7 +442,6 @@ void MenuFunciones::BuscarInventario(ListaDoble* ListaInventario)
     if (NodoInventario* Inventario = dynamic_cast<NodoInventario*>(Nodo))
     {
         Inventario->Mostrar();
-        Inventario->Vistas++;
         cout<<"Inventario encontrado exitosamente"<<endl;
         return;
     }
@@ -536,7 +536,6 @@ void MenuFunciones::EncontrarAdministrador(TablaHash* TablaAdmins, ListaCircular
     if (NodoAdmin* Admin = dynamic_cast<NodoAdmin*>(Nodo))
     {
         cout<<"Se encontró el administrador: "<<endl;
-        Admin->Vistas++;
         Admin->Mostrar();
         return;
     }
@@ -642,7 +641,7 @@ void MenuFunciones::EliminarMarcaProducto(ListaDobleCircular* Lista) {
     //Lista->EliminarTodo();
     cout << "Todas las marcas de productos han sido eliminadas." << endl;
 }
-void MenuFunciones::EncontrarMarcaProducto(ListaDobleCircular* Lista) {
+void MenuFunciones::EncontrarMarcaProducto(ListaDobleCircular* Lista, ListaSimple* ListaPasillos, ListaDoble* ListaProductos) {
     int codPasillo, codProducto, codMarca;
     cout << "Ingrese el código de pasillo: ";
     cin >> codPasillo;
@@ -651,18 +650,45 @@ void MenuFunciones::EncontrarMarcaProducto(ListaDobleCircular* Lista) {
     cout << "Ingrese el código de marca: ";
     cin >> codMarca;
 
+    NodoBase* nodoPasillo = ListaPasillos->EncontrarPorPredicado([codPasillo](NodoBase* nodo) {
+        if (NodoPasillo* pasillo = dynamic_cast<NodoPasillo*>(nodo)) {
+            return pasillo->Codigo == codPasillo;
+        }
+        return false;
+    });
+
+    if (nodoPasillo) {
+        if (NodoPasillo* pasillo = dynamic_cast<NodoPasillo*>(nodoPasillo)) {
+            pasillo->Visitas++;
+        }
+    }
+    NodoBase* nodoProducto = ListaProductos->EncontrarPorPredicado([codPasillo, codProducto](NodoBase* nodo) {
+        if (NodoProducto* producto = dynamic_cast<NodoProducto*>(nodo)) {
+            return producto->Pasillo == codPasillo && producto->Producto == codProducto;
+        }
+        return false;
+    });
+
+    if (nodoProducto) {
+        if (NodoProducto* producto = dynamic_cast<NodoProducto*>(nodoProducto)) {
+            producto->Visitas++;
+        }
+    }
+
     NodoBase* nodoMarca = Lista->EncontrarPorPredicado([codPasillo, codProducto, codMarca](NodoBase* nodo) {
         if (NodoMarca* marca = dynamic_cast<NodoMarca*>(nodo)) {
             return marca->CodPasillo == codPasillo && marca->CodProducto == codProducto && marca->CodMarca == codMarca;
         }
         return false;
     });
-
     if (nodoMarca) {
-        NodoMarca* marca = dynamic_cast<NodoMarca*>(nodoMarca);
+        if (NodoMarca* marca = dynamic_cast<NodoMarca*>(nodoMarca)) {
+            marca->Visitas++;
+        }
+
         cout << "Marca de producto encontrada:" << endl;
+        NodoMarca* marca = dynamic_cast<NodoMarca*>(nodoMarca);
         marca->Mostrar();
-        marca->Busquedas++;
     } else {
         cout << "No se encontró la marca de producto." << endl;
     }
@@ -712,26 +738,7 @@ void MenuFunciones::ModificarMarcaProducto(ListaDobleCircular* Lista) {
     cout << "Marca de producto modificada:" << endl;
     marca->Mostrar();
 }
-/*
-void MenuFunciones::ReporteMarcasProducto(ListaDobleCircular* Lista) {
-    lxw_workbook *workbook = workbook_new("Reporte_Marcas_Producto.xlsx");
-    lxw_worksheet *worksheet = workbook_add_worksheet(workbook, NULL);
 
-    worksheet_write_string(worksheet, 0, 0, "Codigo Marca", NULL);
-    worksheet_write_string(worksheet, 0, 1, "Nombre", NULL);
-
-    int row = 1;
-    for (const auto& prod : productos) {
-        if (prod.codPasillo == pasillo && prod.codProducto == producto) {
-            worksheet_write_string(worksheet, row, 0, prod.codMarca.c_str(), NULL);
-            worksheet_write_string(worksheet, row, 1, prod.nombre.c_str(), NULL);
-            row++;
-        }
-    }
-
-    workbook_close(workbook);
-}
-*/
 #pragma endregion
 
 #pragma region Ciudades
@@ -839,26 +846,6 @@ void MenuFunciones::ModificarCiudad(ListaCircular* ListaCiudades) {
     cout << "Ciudad modificada:" << endl;
     ciudad->Mostrar();
 }
-/*
-void MenuFunciones:: ReporteCiudades(ListaCircular* ListaCiudades)
-    {
-    lxw_workbook *workbook = workbook_new("Reporte_Ciudades.xlsx");
-    lxw_worksheet *worksheet = workbook_add_worksheet(workbook, NULL);
-
-    worksheet_write_string(worksheet, 0, 0, "Codigo Ciudad", NULL);
-    worksheet_write_string(worksheet, 0, 1, "Nombre", NULL);
-
-    int row = 1;
-    for (const auto& ciudad : ciudades) {
-        worksheet_write_number(worksheet, row, 0, ciudad.codCiudad, NULL);
-        worksheet_write_string(worksheet, row, 1, ciudad.nombre.c_str(), NULL);
-        row++;
-    }
-
-
-    workbook_close(workbook);
-    }
-*/
 #pragma endregion
 
 #pragma region Clientes
@@ -966,34 +953,4 @@ void MenuFunciones::ModificarClientes(TablaHash* TablaClientes, ListaCircular* L
     Cliente->Mostrar();
     cout << "Datos actualizados exitosamente" << endl;
 }
-/*
-void MenuFunciones::GenerarReporteClientes(TablaHash* TablaClientes) {
-    lxw_workbook *workbook = workbook_new("Reporte_Clientes.xlsx");
-    lxw_worksheet *worksheet = workbook_add_worksheet(workbook, NULL);
-
-    worksheet_write_string(worksheet, 0, 0, "Cedula", NULL);
-    worksheet_write_string(worksheet, 0, 1, "Nombre", NULL);
-    worksheet_write_string(worksheet, 0, 2, "Codigo de ciudad", NULL);
-    worksheet_write_string(worksheet, 0, 3, "Telefono", NULL);
-    worksheet_write_string(worksheet, 0, 4, "Correo", NULL);
-
-    int row = 1;
-    for (int i = 0; i < TablaHash::TAMANNO; ++i) {
-        ListaSimple* lista = TablaClientes->Tabla[i];
-        NodoBase* nodo = lista->Inicio;
-        while (nodo != nullptr) {
-            NodoCliente* cliente = dynamic_cast<NodoCliente*>(nodo);
-            worksheet_write_number(worksheet, row, 0, cliente->Cedula, NULL);
-            worksheet_write_string(worksheet, row, 1, cliente->Nombre.c_str(), NULL);
-            worksheet_write_number(worksheet, row, 2, cliente->CodCiudad, NULL);
-            worksheet_write_number(worksheet, row, 3, cliente->Telefono, NULL);
-            worksheet_write_string(worksheet, row, 4, cliente->Correo.c_str(), NULL);
-            nodo = nodo->Siguiente;
-            ++row;
-        }
-    }
-
-    workbook_close(workbook);
-    }
-*/
 #pragma endregion 
