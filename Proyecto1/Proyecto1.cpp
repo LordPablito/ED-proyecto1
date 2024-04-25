@@ -248,6 +248,7 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
+                        
                         //MenuFunciones::InsertarPasillo(ListaPasillos);
                         MenuFunciones::InsertarPasilloABB(ArbolPasillos);
                         break;
@@ -255,6 +256,7 @@ int main()
                         //MenuFunciones::EliminarPasillo(ListaPasillos);
                         break;
                     case 3:
+
                         MenuFunciones::BuscarPasilloABB(ArbolPasillos);
                         //MenuFunciones::BuscarPasillo(ListaPasillos);
                         break;
@@ -335,6 +337,7 @@ int main()
                         //MenuFunciones::EliminarMarcaProducto(ListaMarcas);
                         break;
                     case 3:
+
                         MenuFunciones::EncontrarMarcaRN(ArbolMarcas);
                         //MenuFunciones::EncontrarMarcaProducto(ListaMarcas);
                         break;
@@ -561,8 +564,10 @@ int main()
             }
             system("CLS");
         } while (opcion != 9);
-    }else{
-        do {
+  
+    }else
+    {
+                do {
             // Mostrar el menú principal
             cout << "Menu:" << endl;
             cout << "1. Pasillo" << endl;
@@ -793,5 +798,4 @@ int main()
     }
     //Menu();
     return 0;
-
-    
+}
