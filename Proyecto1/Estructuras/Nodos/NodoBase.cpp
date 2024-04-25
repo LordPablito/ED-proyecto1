@@ -6,4 +6,5 @@ void NodoBase::Mostrar()
 
 int NodoBase::GetLlave()
 {
+    return 0;
 }

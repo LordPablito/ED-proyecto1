@@ -1,5 +1,8 @@
 ﻿#pragma once
+#include "../Estructuras/Arboles/ArbolAA/ArbolAA.h"
 #include "../Estructuras/Arboles/ArbolAVL/ArbolAVL.h"
+#include "../Estructuras/Arboles/ArbolBinario/ArbolBinario.h"
+#include "../Estructuras/Arboles/ArbolRN/ArbolRN.h"
 #include "../Estructuras/ListaCircular/ListaCircular.h"
 #include "../Estructuras/ListaDoble/ListaDoble.h"
 #include "../Estructuras/ListaDobleCircular/ListaDobleCircular.h"
@@ -20,6 +23,10 @@ public:
     static void EliminarPasillo(ListaSimple* Lista);
     static void BuscarPasillo(ListaSimple* Lista);
     static void ModificarPasillo(ListaSimple* Lista);
+
+    static void InsertarPasilloABB(ArbolBinario* Arbol);
+    static void BuscarPasilloABB(ArbolBinario* Arbol);
+    static void ModificarPasilloABB(ArbolBinario* Arbol);
 #pragma endregion
 
 #pragma region Producto
@@ -39,6 +46,10 @@ public:
     static void EliminarInventario(ListaDoble* ListaInventario);
     static void BuscarInventario(ListaDoble* ListaInventario);
     static void ModificarInventario(ListaDoble* ListaInventario);
+
+    static void InsertarInventarioAA(ArbolAA* Arbol);
+    static void EncontrarInventarioAA(ArbolAA* Arbol);
+    static void ModificarInventarioAA(ArbolAA* Arbol);
 #pragma endregion
     
 #pragma region Administrador
@@ -53,6 +64,10 @@ public:
     static void EliminarMarcaProducto(ListaDobleCircular* Lista);
     static void EncontrarMarcaProducto(ListaDobleCircular* Lista);
     static void ModificarMarcaProducto(ListaDobleCircular* Lista);
+
+    static void InsertarMarcaRN(ArbolRN* Arbol);
+    static void EncontrarMarcaRN(ArbolRN* Arbol);
+    static void ModificarMarcaRN(ArbolRN* Arbol);
 #pragma endregion
 
 #pragma region Ciudades

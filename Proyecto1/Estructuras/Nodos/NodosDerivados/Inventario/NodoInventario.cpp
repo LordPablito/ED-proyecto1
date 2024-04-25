@@ -43,3 +43,8 @@ void NodoInventario::Mostrar()
 {
     std::cout<<Pasillo<<" "<<Producto<<" "<<Marca<<" "<<Inventario<<" "<<Nombre<<" "<<Cantidad<<" "<<CanastaBasica<<std::endl;
 }
+
+int NodoInventario::GetLlave()
+{
+    return Inventario;
+}

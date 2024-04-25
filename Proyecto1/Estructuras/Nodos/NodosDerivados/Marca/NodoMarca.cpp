@@ -43,3 +43,8 @@ void NodoMarca::Mostrar()
     std::cout << CodPasillo << CodProducto << CodMarca
               <<  Nombre << CantidadGondola << Precio << std::endl;
 }
+
+int NodoMarca::GetLlave()
+{
+    return CodMarca;
+}

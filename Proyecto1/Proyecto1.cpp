@@ -3,7 +3,10 @@
 #include <string>
 
 #include "BibliotecaReportes/BibliotecaReportes.h"
+#include "Estructuras/Arboles/ArbolAA/ArbolAA.h"
 #include "Estructuras/Arboles/ArbolAVL/ArbolAVL.h"
+#include "Estructuras/Arboles/ArbolBinario/ArbolBinario.h"
+#include "Estructuras/Arboles/ArbolRN/ArbolRN.h"
 #include "Estructuras/ListaDoble/ListaDoble.h"
 #include "Estructuras/ListaSimple/ListaSimple.h"
 #include "Estructuras/ListaDobleCircular/ListaDobleCircular.h"
@@ -136,43 +139,81 @@ ArbolAVL* CargarProductosPasillos(string NombreArchivo)
     const string Directorio = DIRECTORIO+NombreArchivo;
     cout<<Directorio<<endl;
     Archivo.open(Directorio);
-    //string Basura;
-    //getline(Archivo, Basura);
     for(string Linea; getline(Archivo, Linea);)
     {
         if (Linea.empty()) continue;
-        NodoCliente* NuevoNodo = new NodoCliente(Linea);
+        NodoProducto* NuevoNodo = new NodoProducto(Linea);
         ArbolArchivo->InsertarNodo(ArbolArchivo->Raiz, false, NuevoNodo);
     }
     return ArbolArchivo;
 }
 
+ArbolBinario* CargarPasillosABB(string NombreArchivo)
+{
+    ifstream Archivo;
+    ArbolBinario* ArbolArchivo = new ArbolBinario();
+    const string Directorio = DIRECTORIO+NombreArchivo;
+    cout<<Directorio<<endl;
+    Archivo.open(Directorio);
+    for(string Linea; getline(Archivo, Linea);)
+    {
+        if (Linea.empty()) continue;
+        NodoPasillo* NuevoNodo = new NodoPasillo(Linea);
+        ArbolArchivo->InsertarNodo(NuevoNodo);
+    }
+    return ArbolArchivo;
+}
+
+ArbolRN* CargarMarcasARN(string NombreArchivo)
+{
+    ifstream Archivo;
+    ArbolRN* ArbolArchivo = new ArbolRN();
+    const string Directorio = DIRECTORIO+NombreArchivo;
+    cout<<Directorio<<endl;
+    Archivo.open(Directorio);
+    for(string Linea; getline(Archivo, Linea);)
+    {
+        if (Linea.empty()) continue;
+        NodoMarca* NuevoNodo = new NodoMarca(Linea);
+        ArbolArchivo->insertar(NuevoNodo);
+    }
+    return ArbolArchivo;
+}
+
+ArbolAA* CargarInvetarioAA(string NombreArchivo)
+{
+    ifstream Archivo;
+    ArbolAA* ArbolArchivo = new ArbolAA();
+    const string Directorio = DIRECTORIO+NombreArchivo;
+    cout<<Directorio<<endl;
+    Archivo.open(Directorio);
+    for(string Linea; getline(Archivo, Linea);)
+    {
+        if (Linea.empty()) continue;
+        NodoInventario* NuevoNodo = new NodoInventario(Linea);
+        ArbolArchivo->insert(NuevoNodo);
+    }
+    return ArbolArchivo;
+} 
+
 int main()
 {
-    ListaSimple* ListaPasillos = CargarPasillos("Pasillos.txt");
-    ListaDoble* ListaProds = CargarProductosPasillo("ProductosPasillos.txt");
+    //ListaSimple* ListaPasillos = CargarPasillos("Pasillos.txt");
+    //ListaDoble* ListaProds = CargarProductosPasillo("ProductosPasillos.txt");
+    //ListaDoble* ListaInventario = CargarInventario("Inventario.txt");
+    //ListaDobleCircular* ListaMarcas = CargarMarcaProductos("MarcasProductos.txt");
+    //ListaCircular* ListaCiudades = CargarCiudad("Ciudades.txt");
+    //TablaHash* TablaAdmins = CargarAdmins("Administradores.txt");
+    //TablaHash* TablaClientes = CargarClientes("Clientes.txt");
+    
+    ArbolBinario* ArbolPasillos = CargarPasillosABB("Pasillos.txt");
     ArbolAVL* ArbolProds = CargarProductosPasillos("ProductosPasillos.txt");
-    ListaDoble* ListaInventario = CargarInventario("Inventario.txt");
-    ListaDobleCircular* ListaMarcas = CargarMarcaProductos("MarcasProductos.txt");
-    ListaCircular* ListaCiudades = CargarCiudad("Ciudades.txt");
-    TablaHash* TablaAdmins = CargarAdmins("Administradores.txt");
-    TablaHash* TablaClientes = CargarClientes("Clientes.txt");
-    ListaPasillos->Mostrar();
-
-    bool EsAdmin = MenuFunciones::Login(TablaAdmins, TablaClientes);
+    ArbolRN* ArbolMarcas = CargarMarcasARN("MarcasProductos.txt");
+    ArbolAA* ArbolInventario = CargarInvetarioAA("Inventario.txt");
     
-    cout<<endl;
-    ListaProds->Mostrar();
-    cout<<endl;
-    ListaInventario->Mostrar();
-    cout<< endl;
-    ListaMarcas->Mostrar();
-    cout<<endl;
-    ListaCiudades->Mostrar();
-    cout<<endl;
-    TablaAdmins->Mostrar();
-    cout<<endl;
-    
+    //ArbolMarcas->MostrarRN();
+    //bool EsAdmin = MenuFunciones::Login(TablaAdmins, TablaClientes);
+    bool EsAdmin = true;
     int opcion, subopcion1;
     if (EsAdmin)
     {
@@ -212,18 +253,21 @@ int main()
                     switch (subopcion1) {
                     case 1:
                         //MenuFunciones::InsertarPasillo(ListaPasillos);
+                        MenuFunciones::InsertarPasilloABB(ArbolPasillos);
                         break;
                     case 2:
-                        MenuFunciones::EliminarPasillo(ListaPasillos);
+                        //MenuFunciones::EliminarPasillo(ListaPasillos);
                         break;
                     case 3:
-                        MenuFunciones::BuscarPasillo(ListaPasillos);
+                        MenuFunciones::BuscarPasilloABB(ArbolPasillos);
+                        //MenuFunciones::BuscarPasillo(ListaPasillos);
                         break;
                     case 4:
-                        MenuFunciones::ModificarPasillo(ListaPasillos);
+                        MenuFunciones::ModificarPasilloABB(ArbolPasillos);
+                        //MenuFunciones::ModificarPasillo(ListaPasillos);
                         break;
                     case 5:
-                        BibliotecaReportes::ReportarPasillos(ListaPasillos);
+                        //BibliotecaReportes::ReportarPasillos(ListaPasillos);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -254,7 +298,7 @@ int main()
                         //MenuFunciones::InsertarProducto(ListaProds, ListaPasillos);
                         break;
                     case 2:
-                        MenuFunciones::EliminarProducto(ListaProds, ListaMarcas);
+                        //MenuFunciones::EliminarProducto(ListaProds, ListaMarcas);
                         break;
                     case 3:
                         MenuFunciones::BuscarProductoAVL(ArbolProds);
@@ -289,16 +333,19 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::InsertarMarcaProducto(ListaMarcas, ListaPasillos);
+                        MenuFunciones::InsertarMarcaRN(ArbolMarcas);
+                        //MenuFunciones::InsertarMarcaProducto(ListaMarcas, ListaPasillos);
                         break;
                     case 2:
-                        MenuFunciones::EliminarMarcaProducto(ListaMarcas);
+                        //MenuFunciones::EliminarMarcaProducto(ListaMarcas);
                         break;
                     case 3:
-                        MenuFunciones::EncontrarMarcaProducto(ListaMarcas);
+                        MenuFunciones::EncontrarMarcaRN(ArbolMarcas);
+                        //MenuFunciones::EncontrarMarcaProducto(ListaMarcas);
                         break;
                     case 4:
-                        MenuFunciones::ModificarMarcaProducto(ListaMarcas);
+                        MenuFunciones::ModificarMarcaRN(ArbolMarcas);
+                        //MenuFunciones::ModificarMarcaProducto(ListaMarcas);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -325,16 +372,18 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::InsertarInventario(ListaInventario, ListaPasillos, ListaProds, ListaMarcas);
+                        MenuFunciones::InsertarInventarioAA(ArbolInventario);
+                        //MenuFunciones::InsertarInventario(ListaInventario, ListaPasillos, ListaProds, ListaMarcas);
                         break;
                     case 2:
-                        MenuFunciones::EliminarInventario(ListaInventario);
+                        //MenuFunciones::EliminarInventario(ListaInventario);
                         break;
                     case 3:
-                        MenuFunciones::BuscarInventario(ListaInventario);
+                        MenuFunciones::EncontrarInventarioAA(ArbolInventario);
+                        //MenuFunciones::BuscarInventario(ListaInventario);
                         break;
                     case 4:
-                        MenuFunciones::ModificarInventario(ListaInventario);
+                        //MenuFunciones::ModificarInventario(ListaInventario);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -361,16 +410,16 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::InsertarClientes(TablaClientes, ListaCiudades, 0);
+                        //MenuFunciones::InsertarClientes(TablaClientes, ListaCiudades, 0);
                         break;
                     case 2:
-                        MenuFunciones::EliminarClientes(TablaClientes, ListaCiudades);
+                        //MenuFunciones::EliminarClientes(TablaClientes, ListaCiudades);
                         break;
                     case 3:
-                        MenuFunciones::EncontrarClientes(TablaClientes, ListaCiudades);
+                        //MenuFunciones::EncontrarClientes(TablaClientes, ListaCiudades);
                         break;
                     case 4:
-                        MenuFunciones::ModificarClientes(TablaClientes, ListaCiudades);
+                        //MenuFunciones::ModificarClientes(TablaClientes, ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -397,16 +446,16 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::InsertarAdministrador(TablaAdmins, ListaCiudades);
+                        //MenuFunciones::InsertarAdministrador(TablaAdmins, ListaCiudades);
                         break;
                     case 2:
-                        MenuFunciones::EliminarAdministrador(TablaAdmins, ListaCiudades);
+                        //MenuFunciones::EliminarAdministrador(TablaAdmins, ListaCiudades);
                         break;
                     case 3:
-                        MenuFunciones::EncontrarAdministrador(TablaAdmins, ListaCiudades);
+                        //MenuFunciones::EncontrarAdministrador(TablaAdmins, ListaCiudades);
                         break;
                     case 4:
-                        MenuFunciones::ModificarAdministrador(TablaAdmins, ListaCiudades);
+                        //MenuFunciones::ModificarAdministrador(TablaAdmins, ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -433,16 +482,16 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones:: InsertarCiudad(ListaCiudades);
+                        //MenuFunciones:: InsertarCiudad(ListaCiudades);
                         break;
                     case 2:
-                        MenuFunciones:: EliminarCiudad(ListaCiudades);
+                        //MenuFunciones:: EliminarCiudad(ListaCiudades);
                         break;
                     case 3:
-                        MenuFunciones::EncontrarCiudad(ListaCiudades);
+                        //MenuFunciones::EncontrarCiudad(ListaCiudades);
                         break;
                     case 4:
-                        MenuFunciones::ModificarCiudad(ListaCiudades);
+                        //MenuFunciones::ModificarCiudad(ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -475,34 +524,34 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        BibliotecaReportes::ReportarPasillos(ListaPasillos);
+                        //BibliotecaReportes::ReportarPasillos(ListaPasillos);
                         break;
                     case 2:
-                        BibliotecaReportes::ReportarProductosPasillo(ListaProds);
+                        //BibliotecaReportes::ReportarProductosPasillo(ListaProds);
                         break;
                     case 3:
-                        BibliotecaReportes::ReportarMarcasProducto(ListaMarcas);
+                        //BibliotecaReportes::ReportarMarcasProducto(ListaMarcas);
                         break;
                     case 4:
-                        BibliotecaReportes::ReportarAdministradores(TablaAdmins);
+                        //BibliotecaReportes::ReportarAdministradores(TablaAdmins);
                         break;
                     case 5:
-                        BibliotecaReportes::ReportarClientes(TablaClientes);
+                        //BibliotecaReportes::ReportarClientes(TablaClientes);
                         break;
                     case 6:
-                        BibliotecaReportes::ReportarCiudades(ListaCiudades);
+                        //BibliotecaReportes::ReportarCiudades(ListaCiudades);
                         break;
                     case 7:
-                        BibliotecaReportes::ReportarPasilloMasVisto(ListaPasillos);
+                        //BibliotecaReportes::ReportarPasilloMasVisto(ListaPasillos);
                         break;
                     case 8:
-                        BibliotecaReportes::ReportarPasilloMenosVisto(ListaPasillos);
+                        //BibliotecaReportes::ReportarPasilloMenosVisto(ListaPasillos);
                         break;
                     case 9:
-                        BibliotecaReportes::ReportarProductosMasBuscados(ListaProds);
+                        //BibliotecaReportes::ReportarProductosMasBuscados(ListaProds);
                         break;
                     case 10:
-                        BibliotecaReportes::ReportarMarcasMasBuscadas(ListaMarcas);
+                        //BibliotecaReportes::ReportarMarcasMasBuscadas(ListaMarcas);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -556,7 +605,7 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::BuscarPasillo(ListaPasillos);
+                        //MenuFunciones::BuscarPasillo(ListaPasillos);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -580,7 +629,7 @@ int main()
                     switch (subopcion1)
                     {
                     case 1:
-                        MenuFunciones::BuscarProducto(ListaProds, ListaPasillos);
+                        //MenuFunciones::BuscarProducto(ListaProds, ListaPasillos);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -604,7 +653,7 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::EncontrarMarcaProducto(ListaMarcas);
+                        //MenuFunciones::EncontrarMarcaProducto(ListaMarcas);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -628,7 +677,7 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::BuscarInventario(ListaInventario);
+                        //MenuFunciones::BuscarInventario(ListaInventario);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -652,7 +701,7 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::EncontrarClientes(TablaClientes, ListaCiudades);
+                        //MenuFunciones::EncontrarClientes(TablaClientes, ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -676,7 +725,7 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::EncontrarAdministrador(TablaAdmins, ListaCiudades);
+                        //MenuFunciones::EncontrarAdministrador(TablaAdmins, ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -700,7 +749,7 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        MenuFunciones::EncontrarCiudad(ListaCiudades);
+                        //MenuFunciones::EncontrarCiudad(ListaCiudades);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;
@@ -726,13 +775,13 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
-                        BibliotecaReportes::ReportarPasillos(ListaPasillos);
+                        //BibliotecaReportes::ReportarPasillos(ListaPasillos);
                         break;
                     case 2:
-                        BibliotecaReportes::ReportarProductosPasillo(ListaProds);
+                        //BibliotecaReportes::ReportarProductosPasillo(ListaProds);
                         break;
                     case 3:
-                        BibliotecaReportes::ReportarMarcasProducto(ListaMarcas);
+                        //BibliotecaReportes::ReportarMarcasProducto(ListaMarcas);
                         break;
                     case 0:
                         cout << "Volviendo al menu principal..." << endl;

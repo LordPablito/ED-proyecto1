@@ -23,6 +23,6 @@ public:
           Precio(precio)
     {
     }
-
     void Mostrar() override;
+    int GetLlave() override;
 };
