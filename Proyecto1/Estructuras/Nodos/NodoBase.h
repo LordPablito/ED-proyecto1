@@ -8,7 +8,11 @@ public:
 
     NodoBase* Izquierda;
     NodoBase* Derecha;
+
+    NodoBase* padre;
     int FactorBalance;
+    int color;
+    int nivel;
     
     int Vistas = 0;
     int Busquedas = 0;

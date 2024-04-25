@@ -183,6 +183,7 @@ void MenuFunciones::ModificarPasillo(ListaSimple* Lista)
     Pasillo->Nombre = Nombre;
     Pasillo->Mostrar();
 }
+
 #pragma endregion
 
 #pragma region Producto
@@ -335,75 +336,6 @@ void MenuFunciones::ModificarProducto(ListaDoble* Lista, ListaSimple* ListaPasil
     Producto->Mostrar();
 }
 
-void MenuFunciones::InsertarProductoAVL(ArbolAVL* Arbol)
-{
-    cout << "Insertando en la Opción 1." << endl;
-    // Código correspondiente a insertar en la opción 1
-    int CodPasillo;
-    int CodProd;
-    string NombreProd;
-
-    cout << "Ingrese el código de pasillo: ";
-    cin >> CodPasillo;
-
-    cout << "Ingrese el código de producto: ";
-    cin >> CodProd;
-
-    cout << "Ingrese el nombre de producto: ";
-    cin >> NombreProd;
-
-    NodoProducto* Prod = new NodoProducto(CodPasillo, CodProd, NombreProd);
-    Arbol->InsertarNodo(Arbol->Raiz, false, Prod);
-    cout << "Insertado exitosamente!";
-}
-
-void MenuFunciones::BuscarProductoAVL(ArbolAVL* Arbol)
-{
-    string CodPasillo;
-    string CodProd;
-    
-    cout << "Ingrese el código de pasillo: ";
-    cin >> CodPasillo;
-
-    cout << "Ingrese el código de producto: ";
-    cin >> CodProd;
-
-    NodoBase* Nodo = Arbol->BuscarNodo(Arbol->Raiz, stoi(CodPasillo + CodProd));
-
-    if (NodoProducto* NodoProd = dynamic_cast<NodoProducto*>(Nodo))
-    {
-        NodoProd->Mostrar();
-        cout << "Elemento encontrado!";
-    }
-}
-
-void MenuFunciones::ModificarProductoAVL(ArbolAVL* Arbol)
-{
-    string CodPasillo;
-    string CodProd;
-    
-    cout << "Ingrese el código de pasillo: ";
-    cin >> CodPasillo;
-
-    cout << "Ingrese el código de producto: ";
-    cin >> CodProd;
-
-    NodoBase* Nodo = Arbol->BuscarNodo(Arbol->Raiz, stoi(CodPasillo + CodProd));
-
-    if (NodoProducto* NodoProd = dynamic_cast<NodoProducto*>(Nodo))
-    {
-        NodoProd->Mostrar();
-        cout << "Elemento encontrado!";
-        
-        string Nombre;
-        cout << "Ingrese el nuevo nombre: ";
-        cin >> Nombre;
-        NodoProd->Nombre = Nombre;
-        return;
-    }
-    cout<<"No se encontro el producto especificado\n";
-    
-}
 #pragma endregion
 
 #pragma region Inventario
@@ -782,6 +714,7 @@ void MenuFunciones::ModificarMarcaProducto(ListaDobleCircular* Lista) {
     cout << "Marca de producto modificada:" << endl;
     marca->Mostrar();
 }
+
 /*
 void MenuFunciones::ReporteMarcasProducto(ListaDobleCircular* Lista) {
     lxw_workbook *workbook = workbook_new("Reporte_Marcas_Producto.xlsx");

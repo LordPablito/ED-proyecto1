@@ -1,10 +1,16 @@
 ﻿#pragma once
+#include "../Estructuras/Arboles/ArbolAA/ArbolAA.h"
 #include "../Estructuras/Arboles/ArbolAVL/ArbolAVL.h"
+#include "../Estructuras/Arboles/ArbolBinario/ArbolBinario.h"
+#include "../Estructuras/Arboles/ArbolRN/ArbolRN.h"
 #include "../Estructuras/ListaCircular/ListaCircular.h"
 #include "../Estructuras/ListaDoble/ListaDoble.h"
 #include "../Estructuras/ListaDobleCircular/ListaDobleCircular.h"
 #include "../Estructuras/ListaSimple/ListaSimple.h"
 #include "../Estructuras/TablaHash/TablaHash.h"
+
+//agregado
+#include "../Estructuras/Arboles/ArbolB/ArbolB.h"
 
 
 class MenuFunciones
@@ -20,6 +26,10 @@ public:
     static void EliminarPasillo(ListaSimple* Lista);
     static void BuscarPasillo(ListaSimple* Lista);
     static void ModificarPasillo(ListaSimple* Lista);
+
+    static void InsertarPasilloABB(ArbolBinario* Arbol);
+    static void BuscarPasilloABB(ArbolBinario* Arbol);
+    static void ModificarPasilloABB(ArbolBinario* Arbol);
 #pragma endregion
 
 #pragma region Producto
@@ -39,6 +49,10 @@ public:
     static void EliminarInventario(ListaDoble* ListaInventario);
     static void BuscarInventario(ListaDoble* ListaInventario);
     static void ModificarInventario(ListaDoble* ListaInventario);
+
+    static void InsertarInventarioAA(ArbolAA* Arbol);
+    static void EncontrarInventarioAA(ArbolAA* Arbol);
+    static void ModificarInventarioAA(ArbolAA* Arbol);
 #pragma endregion
     
 #pragma region Administrador
@@ -46,6 +60,10 @@ public:
     static void EliminarAdministrador(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
     static void EncontrarAdministrador(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
     static void ModificarAdministrador(TablaHash* TablaAdmins, ListaCircular* ListaCiudades);
+
+    static void InsertarAdminB(ArbolB* Arbol);
+    static void EncontrarAdminB(ArbolB* Arbol);
+    static void ModificarAdminB(ArbolB* Arbol);
 #pragma endregion 
 
 #pragma region Marca
@@ -53,6 +71,10 @@ public:
     static void EliminarMarcaProducto(ListaDobleCircular* Lista);
     static void EncontrarMarcaProducto(ListaDobleCircular* Lista, ListaSimple* ListaPasillos, ListaDoble* ListaProductos);
     static void ModificarMarcaProducto(ListaDobleCircular* Lista);
+
+    static void InsertarMarcaRN(ArbolRN* Arbol);
+    static void EncontrarMarcaRN(ArbolRN* Arbol);
+    static void ModificarMarcaRN(ArbolRN* Arbol);
 #pragma endregion
 
 #pragma region Ciudades
@@ -67,5 +89,9 @@ public:
     static void EliminarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades);
     static void EncontrarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades);
     static void ModificarClientes(TablaHash* TablaClientes, ListaCircular* ListaCiudades);
+
+    static void InsertarClienteB(ArbolB* Arbol);
+    static void EncontrarClienteB(ArbolB* Arbol);
+    static void ModificarClienteB(ArbolB* Arbol);
 #pragma endregion 
 };
