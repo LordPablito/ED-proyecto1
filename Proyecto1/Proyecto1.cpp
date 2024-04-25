@@ -20,7 +20,7 @@
 #include "Estructuras/Nodos/NodosDerivados/Clientes/NodoCliente.h"
 #include "Estructuras/TablaHash/TablaHash.h"
 #include "Menu/MenuFunciones.h"
-
+#include "Estructuras/ArbolABB/PasilloABB.h"
 static const string DIRECTORIO = "../Archivos/";
 
 ListaSimple* CargarPasillos(string NombreArchivo)
@@ -215,10 +215,8 @@ int main()
     //bool EsAdmin = MenuFunciones::Login(TablaAdmins, TablaClientes);
     bool EsAdmin = true;
     int opcion, subopcion1;
-    if (EsAdmin)
-    {
-        do {
-            // Mostrar el menú principal
+
+    do {
             cout << "Menu:" << endl;
             cout << "1. Pasillo" << endl;
             cout << "2. Producto" << endl;
@@ -229,8 +227,7 @@ int main()
             cout << "7. Ciudad" << endl;
             cout << "8. Reportes" << endl;
             cout << "9. Salir" << endl;
-            // Solicitar al usuario que ingrese una opción
-            cout << "Ingrese el numero de opcion: ";
+                cout << "Ingrese el numero de opcion: ";
             cin >> opcion;
             system("CLS");
 
@@ -238,7 +235,6 @@ int main()
             switch (opcion) {
             case 1:
                 do {
-                    // Mostrar submenú para la opción 1
                     cout << "Pasillo:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
@@ -252,6 +248,7 @@ int main()
                     
                     switch (subopcion1) {
                     case 1:
+                        
                         //MenuFunciones::InsertarPasillo(ListaPasillos);
                         MenuFunciones::InsertarPasilloABB(ArbolPasillos);
                         break;
@@ -259,6 +256,7 @@ int main()
                         //MenuFunciones::EliminarPasillo(ListaPasillos);
                         break;
                     case 3:
+
                         MenuFunciones::BuscarPasilloABB(ArbolPasillos);
                         //MenuFunciones::BuscarPasillo(ListaPasillos);
                         break;
@@ -319,7 +317,6 @@ int main()
                 break;
             case 3:
                 do {
-                    // Mostrar submenú para la opción 1
                     cout << "Marca:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
@@ -340,6 +337,7 @@ int main()
                         //MenuFunciones::EliminarMarcaProducto(ListaMarcas);
                         break;
                     case 3:
+
                         MenuFunciones::EncontrarMarcaRN(ArbolMarcas);
                         //MenuFunciones::EncontrarMarcaProducto(ListaMarcas);
                         break;
@@ -358,7 +356,6 @@ int main()
                 break;
             case 4:
                 do {
-                    // Mostrar submenú para la opción 1
                     cout << "Inventario:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
@@ -396,7 +393,6 @@ int main()
                 break;
             case 5:
                 do {
-                    // Mostrar submenú para la opción 1
                     cout << "Cliente:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
@@ -432,7 +428,6 @@ int main()
                 break;
             case 6:
                 do {
-                    // Mostrar submenú para la opción 1
                     cout << "Administrador:" << endl;
                     cout << "1. Insertar" << endl;
                     cout << "2. Eliminar" << endl;
@@ -468,7 +463,6 @@ int main()
                 break;
             case 7:
                 do {
-                    // Mostrar submenú para la opción 1
                     cout << "Ciudad:" << endl;
                     cout << "1. Insertar " << endl;
                     cout << "2. Eliminar " << endl;
@@ -504,7 +498,6 @@ int main()
                 break;
             case 8:
                 do {
-                    // Mostrar submenú para la opción 1
                     cout << "Reportes" << endl;
                     cout << "1. Reporte Pasillos" << endl;
                     cout << "2. Reporte Productos pasillo" << endl;
@@ -571,6 +564,7 @@ int main()
             }
             system("CLS");
         } while (opcion != 9);
+  
     }else
     {
                 do {

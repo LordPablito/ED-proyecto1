@@ -22,6 +22,7 @@ NodoPasillo::NodoPasillo(std::string& Linea)
         }
         Indice++;
     }
+    Visitas = 0;
 }
 
 void NodoPasillo::Mostrar()

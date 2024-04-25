@@ -62,7 +62,7 @@ public:
 #pragma region Marca
     static void InsertarMarcaProducto(ListaDobleCircular* Lista, ListaSimple* ListaPasillos);
     static void EliminarMarcaProducto(ListaDobleCircular* Lista);
-    static void EncontrarMarcaProducto(ListaDobleCircular* Lista);
+    static void EncontrarMarcaProducto(ListaDobleCircular* Lista, ListaSimple* ListaPasillos, ListaDoble* ListaProductos);
     static void ModificarMarcaProducto(ListaDobleCircular* Lista);
 
     static void InsertarMarcaRN(ArbolRN* Arbol);

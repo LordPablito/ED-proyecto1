@@ -36,6 +36,7 @@ NodoMarca::NodoMarca(const std::string& linea)
         }
         indice++;
     }
+    Visitas = 0;
 }
 
 void NodoMarca::Mostrar()

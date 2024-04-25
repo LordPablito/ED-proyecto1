@@ -9,6 +9,7 @@ public:
     int Pasillo;
     int Producto;
     std::string Nombre;
+    int Visitas;
 
     NodoProducto(const std::string& Linea);
 
