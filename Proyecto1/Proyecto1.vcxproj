@@ -155,7 +155,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BibliotecaReportes\BibliotecaReportes.cpp" />
+    <ClCompile Include="Estructuras\Arboles\ArbolAA\ArbolAA.cpp" />
     <ClCompile Include="Estructuras\Arboles\ArbolAVL\ArbolAVL.cpp" />
+    <ClCompile Include="Estructuras\Arboles\ArbolBinario\ArbolBinario.cpp" />
+    <ClCompile Include="Estructuras\Arboles\ArbolRN\ArbolRN.cpp" />
     <ClCompile Include="Estructuras\ListaCircular\ListaCircular.cpp" />
     <ClCompile Include="Estructuras\ListaDobleCircular\ListaDobleCircular.cpp" />
     <ClCompile Include="Estructuras\ListaDoble\ListaDoble.cpp" />
@@ -171,11 +174,15 @@
     <ClCompile Include="Estructuras\TablaHash\TablaHash.cpp" />
     <ClCompile Include="LectorArchivos\LectorArchivos.cpp" />
     <ClCompile Include="Menu\MenuFunciones.cpp" />
+    <ClCompile Include="Menu\MenuFuncionesArboles.cpp" />
     <ClCompile Include="Proyecto1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BibliotecaReportes\BibliotecaReportes.h" />
+    <ClInclude Include="Estructuras\Arboles\ArbolAA\ArbolAA.h" />
     <ClInclude Include="Estructuras\Arboles\ArbolAVL\ArbolAVL.h" />
+    <ClInclude Include="Estructuras\Arboles\ArbolBinario\ArbolBinario.h" />
+    <ClInclude Include="Estructuras\Arboles\ArbolRN\ArbolRN.h" />
     <ClInclude Include="Estructuras\ListaCircular\ListaCircular.h" />
     <ClInclude Include="Estructuras\ListaDobleCircular\ListaDobleCircular.h" />
     <ClInclude Include="Estructuras\ListaDoble\ListaDoble.h" />

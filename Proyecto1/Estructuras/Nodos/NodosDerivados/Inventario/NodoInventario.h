@@ -17,4 +17,6 @@ public:
     NodoInventario(const std::string& Linea);
 
     void Mostrar() override;
+
+    int GetLlave() override;
 };
